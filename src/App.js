@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
+import { Slider } from '@material-ui/core';
 import './App.css';
 
 
-const App = () => {
+const App = (props) => {
 
   const [numTeams, setNumTeams] = useState(0); 
   const [teamNames, setTeamNames] = useState([]);
@@ -21,7 +21,7 @@ const App = () => {
   return (
     <div>
       <p onClick={() => handleNumTeams()}>{numTeams}</p>
-
+      <Slider aria-label='Number of Teams' defaultValue={4} max={props.maxTeams} min={2} />
     </div>
   )
 }
