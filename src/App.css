@@ -72,17 +72,24 @@
   background-color: rgb(245, 8, 8);
   position: absolute;
   animation-name: team1;
-  animation-duration: 4s;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
   
 }
 
 @keyframes team1 {
   from {
     left: 0%;
+    top: 0%;
+  }
+  50% {
+    top: 0%;
+    left: 58%;
   }
   
   to {
-    left: 59%;
+    top: 40%;
+    left: 58%;
   }
 }
 
