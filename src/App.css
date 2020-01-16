@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,161 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+body {
+  height: 100%;
 }
+
+.App {
+  height: 100%;
+}
+
+#tree-container {
+  width: 60%;
+  height: 100%;
+  background-color: aquamarine;
+  position: absolute;
+  text-align: center;
+}
+
+.match-container {
+  width: 50%;
+  height: 80%;
+  background-color: blue;
+  position: absolute;
+  /* margin-top: 5%; */
+  padding: 1px;
+  
+}
+
+.round1 {
+  border-top: 5px solid black;
+  border-right: 5px solid black;
+  border-bottom: 5px solid black;
+  width: 60%;
+  height: 60%;
+  margin-top: 20%;
+  padding:
+  
+}
+
+.team {
+  width: 5%;
+  height: 5%;
+  margin-top: 17%;
+  border-radius: 70%;
+  background-color: rgb(245, 8, 8);
+  position: absolute;
+  animation-name: team1;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+  
+}
+
+@keyframes team1 {
+  from {
+    left: 0%;
+    top: 0%;
+  }
+  50% {
+    top: 0%;
+    left: 58%;
+  }
+  
+  to {
+    top: 35%;
+    left: 58%;
+  }
+}
+
+.team2 {
+  width: 5%;
+  height: 5%;
+  margin-bottom: 0%;
+  margin-top: -5%;
+  border-radius: 70%;
+  background-color: rgb(12, 238, 12);
+  position: absolute;
+  animation-name: team2;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes team2 {
+  from {
+    left: 0%;
+    bottom: 26%;
+  }
+  50% {
+    bottom: 26%;
+    left: 58%;
+  }
+  
+  to {
+    bottom: 45%;
+    left: 58%;
+  }
+}
+
+
+/* .horizontal {
+  width: 40%;
+  height: 1%;
+  margin-top: 50%;
+  margin-left: 60%;
+  position: relative;
+  background-color: black;
+} */
+
+/* .top-container {
+  height: 40%;
+  width: 90%;
+  margin-top: 10%;
+  background-color: crimson;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+}
+
+.bottom-container {
+    height: 40%;
+    width: 90%;
+    margin-bottom: 5%;
+    background-color: crimson;
+    display: flex;
+    flex-direction: row;
+}
+
+.horizontal-top {
+  height: 2%;
+  width: 60%;
+  margin-top: 10%;
+  background-color: black;
+  position: absolute;
+}
+
+.horizontal-bottom {
+  height: 2%;
+  width: 60%;
+  margin-top: 50%;
+  background-color: black;
+  position: absolute;
+}
+
+.vertical-top {
+  position: absolute;
+  background-color: black;
+  width: 3%;
+  height: 34%;
+  margin-top: 10%;
+  margin-left: 57%;
+}
+
+.vertical-bottom {
+  position: absolute;
+  background-color: black;
+  width: 3%;
+  height: 32%;
+  margin-left: 57%;
+} */

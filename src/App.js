@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Slider } from '@material-ui/core';
 import './App.css';
-
+import Tree from './TournamentTree.js';
 
 const App = (props) => {
 
@@ -22,6 +22,10 @@ const App = (props) => {
     <div>
       <p onClick={() => handleNumTeams()}>{numTeams}</p>
       <Slider aria-label='Number of Teams' defaultValue={4} max={props.maxTeams} min={2} />
+
+      {/* <p onClick={() => handleNumTeams()}>{numTeams}</p> */}
+      <Tree />
+
     </div>
   )
 }
