@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Tree from './TournamentTree.js';
+import Bracket from './Bracket.js'
 
 const App = () => {
 
@@ -21,7 +21,7 @@ const App = () => {
   return (
     <div>
       {/* <p onClick={() => handleNumTeams()}>{numTeams}</p> */}
-      <Tree />
+      <Bracket />
     </div>
   )
 }

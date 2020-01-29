@@ -1,195 +1,129 @@
-/* .App {
-  text-align: center;
+.team {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  position: absolute;
+  background-color: white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.top-team {
+  top: -25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.top-team-end {
+  top: -25px;
+  animation-name: top-team-move;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.losing-team-top {
+  background-color: rgba(255, 0, 0, 0.4);
 }
 
-.App-link {
-  color: #61dafb;
+.winning-team-top {
+  animation-name: top-team-win;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
 }
 
-@keyframes App-logo-spin {
+@keyframes top-team-win {
   from {
-    transform: rotate(0deg);
+    right: -25px;
+    top: -25px;
   }
-  to {
-    transform: rotate(360deg);
-  }
-} */
 
-body {
+  to {
+    right: -25px;
+    top: 75px;
+  }
+}
+
+  @keyframes top-team-move {
+    from {
+      right: 75%
+    }
+    
+    to {
+
+      right: -25px;
+    }
+  }
+
+.bottom-team {
+  bottom: -25px;
+}
+
+.bottom-team-end {
+  bottom: -25px;
+  animation-name: bottom-team-move;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.winning-team-bottom {
+  animation-name: bottom-team-win;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes bottom-team-win {
+  from {
+    right: -25px;
+    bottom: -25px;
+  }
+
+  to {
+    right: -25px;
+    bottom: 75px;
+  }
+}
+
+@keyframes bottom-team-move {
+  from {
+    
+    right: 75%
+  }
+  
+  to {
+    
+    right: -25px;
+  }
+}
+
+#bracket {
+  width: 100%;
   height: 100%;
+  background-color: chartreuse;
+  position: absolute;
+}
+
+.match {
+  width: 200px;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  position: relative;
+}
+
+.round1 {
+  height: 200px;
+  margin-top: 50px;
+  margin-bottom: 100px;
 }
 
 .App {
   height: 100%;
+  width: 100%;
 }
 
-#tree-container {
-  width: 60%;
+body {
   height: 100%;
-  background-color: aquamarine;
-  position: absolute;
-  text-align: center;
+  width: 100%;
 }
 
-.match-container {
-  width: 50%;
-  height: 80%;
-  background-color: blue;
-  position: absolute;
-  /* margin-top: 5%; */
-  padding: 1px;
-  
+.round2 {
+  height: 300px;
+  margin-top: 150px;
+  margin-bottom: 300px;
 }
-
-.round1 {
-  border-top: 5px solid black;
-  border-right: 5px solid black;
-  border-bottom: 5px solid black;
-  width: 60%;
-  height: 60%;
-  margin-top: 20%;
-  padding:
-  
-}
-
-.team {
-  width: 5%;
-  height: 5%;
-  margin-top: 17%;
-  border-radius: 70%;
-  background-color: rgb(245, 8, 8);
-  position: absolute;
-  animation-name: team1;
-  animation-duration: 5s;
-  animation-fill-mode: forwards;
-  
-}
-
-@keyframes team1 {
-  from {
-    left: 0%;
-    top: 0%;
-  }
-  50% {
-    top: 0%;
-    left: 58%;
-  }
-  
-  to {
-    top: 35%;
-    left: 58%;
-  }
-}
-
-.team2 {
-  width: 5%;
-  height: 5%;
-  margin-bottom: 0%;
-  margin-top: -5%;
-  border-radius: 70%;
-  background-color: rgb(12, 238, 12);
-  position: absolute;
-  animation-name: team2;
-  animation-duration: 5s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes team2 {
-  from {
-    left: 0%;
-    bottom: 26%;
-  }
-  50% {
-    bottom: 26%;
-    left: 58%;
-  }
-  
-  to {
-    bottom: 45%;
-    left: 58%;
-  }
-}
-
-
-/* .horizontal {
-  width: 40%;
-  height: 1%;
-  margin-top: 50%;
-  margin-left: 60%;
-  position: relative;
-  background-color: black;
-} */
-
-/* .top-container {
-  height: 40%;
-  width: 90%;
-  margin-top: 10%;
-  background-color: crimson;
-  display: flex;
-  flex-direction: row;
-  border: 1px solid black;
-}
-
-.bottom-container {
-    height: 40%;
-    width: 90%;
-    margin-bottom: 5%;
-    background-color: crimson;
-    display: flex;
-    flex-direction: row;
-}
-
-.horizontal-top {
-  height: 2%;
-  width: 60%;
-  margin-top: 10%;
-  background-color: black;
-  position: absolute;
-}
-
-.horizontal-bottom {
-  height: 2%;
-  width: 60%;
-  margin-top: 50%;
-  background-color: black;
-  position: absolute;
-}
-
-.vertical-top {
-  position: absolute;
-  background-color: black;
-  width: 3%;
-  height: 34%;
-  margin-top: 10%;
-  margin-left: 57%;
-}
-
-.vertical-bottom {
-  position: absolute;
-  background-color: black;
-  width: 3%;
-  height: 32%;
-  margin-left: 57%;
-} */
