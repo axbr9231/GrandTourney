@@ -4,6 +4,8 @@
   border-radius: 100%;
   position: absolute;
   background-color: white;
+  z-index: 1;
+  margin-left: -25px;
 }
 
 .top-team {
@@ -21,13 +23,31 @@
   background-color: rgba(255, 0, 0, 0.4);
 }
 
-.winning-team-top {
-  animation-name: top-team-win;
+.round1 .winning-team-top {
+  animation-name: top-team-win-1;
   animation-duration: 3s;
   animation-fill-mode: forwards;
 }
 
-@keyframes top-team-win {
+.round2 .winning-team-top {
+  animation-name: top-team-win-2;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.round3 .winning-team-top {
+  animation-name: top-team-win-3;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.round4 .winning-team-top {
+  animation-name: top-team-win-4;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes top-team-win-1 {
   from {
     right: -25px;
     top: -25px;
@@ -39,9 +59,45 @@
   }
 }
 
+@keyframes top-team-win-2 {
+  from {
+    right: -25px;
+    top: -25px;
+  }
+
+  to {
+    right: -25px;
+    top: 125px;
+  }
+}
+
+@keyframes top-team-win-3 {
+  from {
+    right: -25px;
+    top: -25px;
+  }
+
+  to {
+    right: -25px;
+    top: 275px;
+  }
+}
+
+@keyframes top-team-win-4 {
+  from {
+    right: -25px;
+    top: -25px;
+  }
+
+  to {
+    right: -25px;
+    top: 575px;
+  }
+}
+
   @keyframes top-team-move {
     from {
-      right: 75%
+      right: 175px;
     }
     
     to {
@@ -61,13 +117,31 @@
   animation-fill-mode: forwards;
 }
 
-.winning-team-bottom {
-  animation-name: bottom-team-win;
+.round1 .winning-team-bottom {
+  animation-name: bottom-team-win-1;
   animation-duration: 3s;
   animation-fill-mode: forwards;
 }
 
-@keyframes bottom-team-win {
+.round2 .winning-team-bottom {
+  animation-name: bottom-team-win-2;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.round3 .winning-team-bottom {
+  animation-name: bottom-team-win-3;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.round4 .winning-team-bottom {
+  animation-name: bottom-team-win-4;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes bottom-team-win-1 {
   from {
     right: -25px;
     bottom: -25px;
@@ -79,10 +153,46 @@
   }
 }
 
+@keyframes bottom-team-win-2 {
+  from {
+    right: -25px;
+    bottom: -25px;
+  }
+
+  to {
+    right: -25px;
+    bottom: 125px;
+  }
+}
+
+@keyframes bottom-team-win-3 {
+  from {
+    right: -25px;
+    bottom: -25px;
+  }
+
+  to {
+    right: -25px;
+    bottom: 275px;
+  }
+}
+
+@keyframes bottom-team-win-4 {
+  from {
+    right: -25px;
+    bottom: -25px;
+  }
+
+  to {
+    right: -25px;
+    bottom: 575px;
+  }
+}
+
 @keyframes bottom-team-move {
   from {
     
-    right: 75%
+    right: 175px;
   }
   
   to {
@@ -93,9 +203,11 @@
 
 #bracket {
   width: 100%;
-  height: 100%;
+  height: auto;
   background-color: chartreuse;
   position: absolute;
+  z-index: -1;
+  padding-left: 25px;
 }
 
 .match {
@@ -104,6 +216,7 @@
   border-right: 2px solid black;
   border-bottom: 2px solid black;
   position: relative;
+  /* z-index: -1; */
 }
 
 .round1 {
@@ -126,4 +239,16 @@ body {
   height: 300px;
   margin-top: 150px;
   margin-bottom: 300px;
+  
+}
+
+.round3 {
+  height: 600px;
+  margin-top: 300px;
+  margin-bottom: 600px;
+}
+
+.round4 {
+  height: 1200px;
+  margin-top: 600px;
 }

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Bracket from './Bracket.js'
+import SetNumTeams from './SetNumTeams';
 
 const App = () => {
 
@@ -9,8 +10,20 @@ const App = () => {
   const [teamNames, setTeamNames] = useState([]);
   const [page, setPage] = useState(0);
 
-  const handleNumTeams = () => {
-    setNumTeams(numTeams + 1)
+  const handlePageForward = () => {
+    setPage(page + 1)
+  }
+
+  const handlePageBackward = () => {
+    setPage(page - 1);
+  }
+
+  const setTeams = (e) => {
+    e.preventDefault();
+    // let input = document.getElementById('select');
+    // console.log('e: ', e)
+    setNumTeams(e.target.value)
+    handlePageForward();
   }
 
   const addTeam = (name) => {
@@ -18,10 +31,11 @@ const App = () => {
     setTeamNames(teamNames);
   }
 
+  let game = page === 0 ? <SetNumTeams setTeams={setTeams}/> : <Bracket numTeams={numTeams}/>;
+
   return (
     <div>
-      {/* <p onClick={() => handleNumTeams()}>{numTeams}</p> */}
-      <Bracket />
+      {game}
     </div>
   )
 }
