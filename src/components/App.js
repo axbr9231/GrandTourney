@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
-import './App.css';
+import '../App.css';
 import Bracket from './Bracket.js'
 import SetNumTeams from './SetNumTeams';
 
