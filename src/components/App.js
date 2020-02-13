@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import '../App.css';
-import Bracket from './Bracket.js'
 import SetNumTeams from './SetNumTeams';
+import TeamSetup from './TeamSetup'
+import Bracket from './Bracket'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const App = () => {
 
@@ -30,12 +32,15 @@ const App = () => {
     setTeamNames(teamNames);
   }
 
-  let game = page === 0 ? <SetNumTeams setTeams={setTeams}/> : <Bracket numTeams={numTeams}/>;
+  // let game = page === 0 ? <SetNumTeams setTeams={setTeams}/> : <Bracket numTeams={numTeams}/>;
 
   return (
-    <div>
-      {game}
-    </div>
+    <Router>
+      <Route path='/' exact render={(props) => <SetNumTeams setTeams={setTeams} />} />
+      <Route path='/teams' component={TeamSetup} />
+      <Route path='/bracket' render={(props) => <Bracket numTeams={numTeams} />} />
+      {/* {game} */}
+    </Router>
   )
 }
 
