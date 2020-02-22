@@ -252,3 +252,11 @@ body {
   height: 1200px;
   margin-top: 600px;
 }
+
+.team-label {
+  margin-top: 40px;
+}
+
+.team-input {
+  margin-top: 40px;
+}
