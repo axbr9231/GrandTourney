@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
+import { TextField, Input } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
       },
     },
   }));
-const TeamSetupForm = ({ id }) => {
+const TeamSetupForm = ({ id, handleTeamNameChange }) => {
 
   const classes = useStyles();
   const [teamName, setTeamName] = useState('');
@@ -21,23 +21,18 @@ const TeamSetupForm = ({ id }) => {
   const updateTeamName = (e) => {
       setTeamName(e.target.value);
   }
-  // if (document.getElementById(id) && teamName === '') {
-  //   document.getElementById(id).setAttribute('error', 'true')
-  // }
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <div>
-        {/* <TextField error id="standard-error" label="Error" defaultValue="Hello World" /> */}
         <TextField
           error={teamName === ''}
           id={id}
           label="Team Name"
-          ErrorText="Enter team name"
-          onChange={(e) => {updateTeamName(e)}}
+          onChange={(e) => {handleTeamNameChange(parseInt(id), e.target.value)}}
         />
-        <label for="myfile" className="team-label">Upload an Image</label>
-        <input type="file" id="myfile" name="myfile" className="team-input"/>   
+        {/* <label for="myfile" className="team-label">Upload an Image</label>
+        <Input type="file" name="myfile" className="team-input"/>    */}
       </div>
       <aside>
       </aside>

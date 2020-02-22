@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import '../App.css';
-import MatchReal from './MatchReal.js'
+import MatchReal from './Match.js'
 import Grid from '@material-ui/core/Grid';
 
 const Bracket = (props) => {
