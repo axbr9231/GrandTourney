@@ -1,13 +1,10 @@
 import React, {useState} from 'react';
 import '../App.css';
-import MatchReal from './Match.js'
+import Match from './Match.js'
 import Grid from '@material-ui/core/Grid';
 
-const Bracket = (props) => {
-    let teams = props.numTeams;
-    let numMatches = new Array(Math.floor(teams / 2)).fill(1);
-    console.log(numMatches);
-    // const [numMatches, setMatches] = useState([1, 2, 3, 4, 5, 6, 7, 8]);
+const Bracket = ({ teamArray }) => {
+    let numMatches = new Array(Math.floor(teamArray.length / 2)).fill(1);
 
     return (
         <div id="bracket">
@@ -16,28 +13,28 @@ const Bracket = (props) => {
                 {numMatches.map((match, i) => {
                     console.log('hit at match number ', i);
                     return (
-                        <MatchReal round="round1" key={i}/>
+                        <Match round="round1" key={i} teams={[teamArray[0], teamArray[1]]} />
                     )
                 }) }
                 </Grid>
                 <Grid item>
                 {numMatches.slice(0, (numMatches.length / 2)).map((match, i) => {
                     return (
-                        <MatchReal round="round2" key={i}/>
+                        <Match round="round2" key={i} teams={[teamArray[0], teamArray[1]]} />
                     )
                 }) }
                 </Grid>
                 <Grid item>
                 {numMatches.slice(0, (numMatches.length / 4)).map((match, i) => {
                     return (
-                        <MatchReal round="round3" key={i}/>
+                        <Match round="round3" key={i} teams={[teamArray[0], teamArray[1]]} />
                     )
                 }) }
                 </Grid>
                 <Grid item>
                 {numMatches.slice(0, (numMatches.length / 8)).map((match, i) => {
                     return (
-                        <MatchReal round="round4" key={i}/>
+                        <Match round="round4" key={i} teams={[teamArray[0], teamArray[1]]} />
                     )
                 }) }
                 </Grid>

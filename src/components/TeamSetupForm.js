@@ -20,6 +20,7 @@ const TeamSetupForm = ({ id, handleTeamNameChange }) => {
 
   const updateTeamName = (e) => {
       setTeamName(e.target.value);
+      handleTeamNameChange(parseInt(id), e.target.value);
   }
 
   return (
@@ -29,7 +30,7 @@ const TeamSetupForm = ({ id, handleTeamNameChange }) => {
           error={teamName === ''}
           id={id}
           label="Team Name"
-          onChange={(e) => {handleTeamNameChange(parseInt(id), e.target.value)}}
+          onChange={updateTeamName}
         />
         {/* <label for="myfile" className="team-label">Upload an Image</label>
         <Input type="file" name="myfile" className="team-input"/>    */}

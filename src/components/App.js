@@ -25,7 +25,7 @@ const App = () => {
     <Router>
       <Route path='/' exact render={(props) => <NumTeams setNumTeams={setNumTeams} />} />
       <Route path='/teams' render={(props) => <TeamSetup numTeams={numTeams} handleTeamNameChange={handleTeamNameChange} />} />
-      <Route path='/bracket' render={(props) => <Bracket numTeams={numTeams} />} />
+      <Route path='/bracket' render={(props) => <Bracket teamArray={teamArray} />} />
     </Router>
   )
 }
