@@ -3,14 +3,14 @@ import '../App.css';
 import RealTeam from './Team.js'
 
 const Match = (props) => {
-
+    console.log('match props: ', props);
     const team1name = props.teams[0];
     const team2name = props.teams[1];
-    const team1initials = team1name.split(' ').map(word => word[0].toUpperCase()).join('');
-    const team2initials = team2name.split(' ').map(word => word[0].toUpperCase()).join('');
+    const team1initials = team1name.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('');
+    const team2initials = team2name.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('');
 
-    console.log(team1initials);
-    console.log(team2initials);
+    // console.log(team1initials);
+    // console.log(team2initials);
 
     return (
         <div className={props.round + ' match'}>
