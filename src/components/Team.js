@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../App.css';
 
-const RealTeam = (props) => {
+const Team = (props) => {
 
     const [className, setClassName] = useState(props.teamPositionStart)
     const changeClassName = (e) => {
@@ -22,4 +22,4 @@ const RealTeam = (props) => {
     )
 }
 
-export default RealTeam;
+export default Team;

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import '../App.css';
-import RealTeam from './Team.js'
+import Team from './Team.js'
 
 const Match = (props) => {
     console.log('match props: ', props);
@@ -14,14 +14,14 @@ const Match = (props) => {
 
     return (
         <div className={props.round + ' match'}>
-            <RealTeam 
+            <Team 
                 teamPositionStart="top-team" 
                 teamPositionEnd="top-team-end" 
                 winningTeamEnd="winning-team-top"
                 losingTeamEnd="losing-team-top"
                 initials={team1initials}
                 />
-            <RealTeam 
+            <Team 
                 teamPositionStart="bottom-team" 
                 teamPositionEnd="bottom-team-end"
                 winningTeamEnd="winning-team-bottom"
