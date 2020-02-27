@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
+import { Grid } from '@material-ui/core';
 import '../App.css';
-import Match from './Match.js'
-import Grid from '@material-ui/core/Grid';
+import Match from './Match.js';
+import Round from './Round.js';
 
 const Bracket = ({ teamArray }) => {
     const originalRoundObject = {};
     
     const firstRoundMatches = [];
     let match = [];
-    while (teamArray.length) {
-        match.push(teamArray.splice(Math.floor(Math.random() * teamArray.length), 1)[0]);
-        match.push(teamArray.splice(Math.floor(Math.random() * teamArray.length), 1)[0]);
+    const teamsCopy = teamArray.slice();
+    while (teamsCopy.length) {
+        match.push(teamsCopy.splice(Math.floor(Math.random() * teamsCopy.length), 1)[0]);
+        match.push(teamsCopy.splice(Math.floor(Math.random() * teamsCopy.length), 1)[0]);
         firstRoundMatches.push(match);
         match = [];
     }
@@ -18,7 +20,7 @@ const Bracket = ({ teamArray }) => {
 
     const numRounds = Math.ceil(Math.log2(teamArray.length));
     for (let i = 2; i <= numRounds; i++) {
-        originalRoundObject[i] = []
+        originalRoundObject[i] = new Array(originalRoundObject[i - 1].length / 2).fill([]);
     };
 
     const [rounds, updateRounds] = useState(originalRoundObject);
@@ -27,7 +29,8 @@ const Bracket = ({ teamArray }) => {
 
     return (
         <div id="bracket">
-            <Grid container >
+            {Object.keys(rounds).map(round => <Round key={round} round={round} matches={rounds[round]} />)}
+            {/* <Grid container >
                 <Grid item>
                 {rounds[1].map((match, i) => {
                     console.log('hit at match number ', i);
@@ -36,7 +39,7 @@ const Bracket = ({ teamArray }) => {
                     )
                 }) }
                 </Grid>
-                {/* <Grid item>
+                <Grid item>
                 {matches.slice(0, (matches.length / 2)).map((match, i) => {
                     return (
                         <Match round="round2" key={i} teams={[teamArray[0], teamArray[1]]} />
@@ -56,9 +59,9 @@ const Bracket = ({ teamArray }) => {
                         <Match round="round4" key={i} teams={[teamArray[0], teamArray[1]]} />
                     )
                 }) }
-                </Grid> */}
+                </Grid>
                 
-            </Grid>
+            </Grid> */}
         </div>
     )
 }
