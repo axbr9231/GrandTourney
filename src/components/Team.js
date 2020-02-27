@@ -17,7 +17,7 @@ const RealTeam = (props) => {
             className={'team ' + className}
             onClick={(e) => {changeClassName(e)}}
         >
-            {props.initials}
+            <h2>{props.initials}</h2>
         </div>
     )
 }
