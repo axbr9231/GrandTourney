@@ -16,20 +16,20 @@ const Match = ({ round, teams }) => {
 
     return (
         <div className={`round${round} match`}>
-            <Team 
+            {teams.length ? <Team 
                 teamPositionStart="top-team" 
                 teamPositionEnd="top-team-end" 
                 winningTeamEnd="winning-team-top"
                 losingTeamEnd="losing-team-top"
                 initials={team1initials || null}
-                />
-            <Team 
+                /> : null}
+            {teams.length ? <Team 
                 teamPositionStart="bottom-team" 
                 teamPositionEnd="bottom-team-end"
                 winningTeamEnd="winning-team-bottom"
                 losingTeamEnd="losing-team-bottom"
                 initials={team2initials || null}
-                />
+                /> : null}
         </div>
     )
 }
