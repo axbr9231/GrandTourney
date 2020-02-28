@@ -47,19 +47,19 @@ const MatchModal = (props) => {
         >
             {/* <DialogContent style={{'width': '500px', 'height': '100px'}}> */}
             <div className="modal-content" style={{'width': '500px', 'height': '200px'}}>
-                <div className="modal-team" style={{'left': '-10px'}}></div>
+                <div className="modal-team1"></div>
                 <h2>Team1 VS Team2</h2>
-                <div className="modal-team"></div>
+                <div className="modal-team2"></div>
             </div>
             {/* </DialogContent>  */}
-            <DialogActions>
+            <DialogActions style={{'display': 'flex', 'justifyContent': 'center'}}>
                 <Button onClick={handleClose} color="primary">
-                    Disagree
+                    Team1
                 </Button>
                 <Button onClick={handleClose} color="primary">
-                    Agree
+                    Team2
                 </Button>
-        </DialogActions>
+            </DialogActions>
         </Dialog>
       </div>
   )
