@@ -51,13 +51,23 @@ const initializeRounds = (array) => {
 
 const Bracket = ({ teamArray }) => {
 
-    const [rounds, updateRounds] = useState(initializeRounds(teamArray));
+    const [rounds, setRounds] = useState(initializeRounds(teamArray));
+
+    const updateRound = (roundId, matchIndex, teamName) => {
+        const newRounds = Object.assign({}, rounds);
+        console.log('round: ', roundId);
+        console.log('matches: ', rounds[roundId]);
+        console.log('match index: ', matchIndex);
+        console.log('match to update: ', rounds[roundId][matchIndex]);
+        newRounds[roundId][Math.floor(matchIndex / 2)][matchIndex % 2 ? 1 : 0] = teamName;
+        setRounds(newRounds);
+    }
 
     console.log('rounds: ', rounds);
 
     return (
         <div id="bracket">
-            {Object.keys(rounds).map(round => <Round key={round} round={round} matches={rounds[round]} />)}
+            {Object.keys(rounds).map(round => <Round key={round} round={round} matches={rounds[round]} updateNextRound={updateRound} />)}
         </div>
     )
 }

@@ -9,13 +9,14 @@ const Team = (props) => {
             setClassName(props.teamPositionEnd)
         } else {
             setClassName(props.winningTeamEnd);
+            props.setWinner(props.which);
         }
     }
 
     return (
         <div 
             className={'team ' + className}
-            onClick={(e) => {changeClassName(e)}}
+            onClick={changeClassName}
         >
             {props.initials}
         </div>

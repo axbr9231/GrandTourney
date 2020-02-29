@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import '../App.css';
 import Team from './Team.js'
 
-const Match = ({ round, teams }) => {
+const Match = ({ round, teams, index, updateNextRound }) => {
     
     let team1name, team2name, team1initials, team2initials;
     if (teams[0]) {
@@ -15,10 +15,13 @@ const Match = ({ round, teams }) => {
     }
     let hideMatch = !teams[0] && !teams[1] && round === '1';
 
-    console.log(`round: ${round} match: ${teams} hideMatch: ${hideMatch}`);
-
-    // console.log(team1initials);
-    // console.log(team2initials);
+    const setWinner = team => {
+        if (team === 0) {
+            updateNextRound(parseInt(round) + 1, parseInt(index), team1name);
+        } else {
+            updateNextRound(parseInt(round) + 1, parseInt(index), team2name);
+        }
+    }
 
     return (
         <div className={`round${round} match`} style={hideMatch ? {'visibility': 'hidden'} : null} >
@@ -27,6 +30,8 @@ const Match = ({ round, teams }) => {
                 teamPositionEnd="top-team-end" 
                 winningTeamEnd="winning-team-top"
                 losingTeamEnd="losing-team-top"
+                which={0}
+                setWinner={setWinner}
                 initials={team1initials || null}
                 /> : null}
             {teams[1] ? <Team 
@@ -34,6 +39,8 @@ const Match = ({ round, teams }) => {
                 teamPositionEnd="bottom-team-end"
                 winningTeamEnd="winning-team-bottom"
                 losingTeamEnd="losing-team-bottom"
+                which={1}
+                setWinner={setWinner}
                 initials={team2initials || null}
                 /> : null}
         </div>
