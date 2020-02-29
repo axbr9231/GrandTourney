@@ -15,7 +15,7 @@ const Team = (props) => {
             setClassName(props.winningTeamEnd);
             setTimeout(() => { 
                 props.setWinner(props.teamId);
-            }, 3000);
+            }, 2500);
         }
     }
 
