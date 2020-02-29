@@ -3,45 +3,39 @@ import '../App.css';
 import Team from './Team.js'
 
 const Match = ({ round, teams, index, updateNextRound }) => {
-    
-    let team1name, team2name, team1initials, team2initials;
-    if (teams[0]) {
-        team1name = teams[0];
-        team1initials = team1name.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('');
-    };
-    if (teams[1]) {
-        team2name = teams[1];
-        team2initials = team2name.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('');
-    }
+
     let hideMatch = !teams[0] && !teams[1] && round === '1';
 
-    const setWinner = team => {
-        if (team === 0) {
-            updateNextRound(parseInt(round) + 1, parseInt(index), team1name);
+    const [teamsState, setTeamsState] = useState(teams);
+
+    const setWinner = teamId => {
+        if (teamId === 0) {
+            updateNextRound(parseInt(round), parseInt(index), teams[0]);
         } else {
-            updateNextRound(parseInt(round) + 1, parseInt(index), team2name);
+            updateNextRound(parseInt(round), parseInt(index), teams[1]);
         }
+        setTeamsState([undefined, undefined]);
     }
 
     return (
         <div className={`round${round} match`} style={hideMatch ? {'visibility': 'hidden'} : null} >
-            {teams[0] ? <Team 
+            {teamsState[0] ? <Team 
                 teamPositionStart="top-team" 
                 teamPositionEnd="top-team-end" 
                 winningTeamEnd="winning-team-top"
                 losingTeamEnd="losing-team-top"
-                which={0}
+                teamId={0}
                 setWinner={setWinner}
-                initials={team1initials || null}
+                name={teamsState[0]}
                 /> : null}
-            {teams[1] ? <Team 
+            {teamsState[1] ? <Team 
                 teamPositionStart="bottom-team" 
                 teamPositionEnd="bottom-team-end"
                 winningTeamEnd="winning-team-bottom"
                 losingTeamEnd="losing-team-bottom"
-                which={1}
+                teamId={1}
                 setWinner={setWinner}
-                initials={team2initials || null}
+                name={teamsState[1]}
                 /> : null}
         </div>
     )

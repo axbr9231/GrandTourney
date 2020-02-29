@@ -2,6 +2,10 @@ import React, {useState} from 'react';
 import '../App.css';
 
 const Team = (props) => {
+    let initials;
+    if (props.name) {
+        initials = props.name.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('');
+    };
 
     const [className, setClassName] = useState(props.teamPositionStart)
     const changeClassName = (e) => {
@@ -9,7 +13,9 @@ const Team = (props) => {
             setClassName(props.teamPositionEnd)
         } else {
             setClassName(props.winningTeamEnd);
-            props.setWinner(props.which);
+            setTimeout(() => { 
+                props.setWinner(props.teamId);
+            }, 3000);
         }
     }
 
@@ -18,7 +24,7 @@ const Team = (props) => {
             className={'team ' + className}
             onClick={changeClassName}
         >
-            {props.initials}
+            {initials}
         </div>
     )
 }
