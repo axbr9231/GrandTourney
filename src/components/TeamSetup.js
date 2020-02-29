@@ -11,7 +11,6 @@ const TeamSetup = ({ numTeams, handleTeamNameChange }) => {
     for (const input of inputs) {
       teams.push(input.value);
     }
-    console.log('teams: ', teams);
   }
   
   return (

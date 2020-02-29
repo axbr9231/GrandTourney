@@ -10,9 +10,10 @@ const Round = ({ round, matches }) => {
             <Grid container >
                 <Grid item>
                 {matches.map((match, i) => {
-                    console.log('hit at match number ', i);
+                    console.log(`round: ${round} match: ${i}: ${match}`);
                     return (
                         <Match round={round} key={i} teams={match} />
+                        // ((match[0] || match[1]) ? <Match round={round} key={i} teams={match} /> : null)
                     )
                 }) }
                 </Grid>
