@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import { Tooltip } from '@material-ui/core'
+import TeamInfo from './TeamInfo';
 import '../App.css';
 
 const Team = (props) => {
@@ -20,12 +22,14 @@ const Team = (props) => {
     }
 
     return (
-        <div 
-            className={'team ' + className}
-            onClick={changeClassName}
-        >
-            {initials}
-        </div>
+        <Tooltip title={<TeamInfo teamName={props.name} />}>
+            <div 
+                className={'team ' + className}
+                onClick={changeClassName}
+            >
+                {initials}
+            </div>
+        </Tooltip>
     )
 }
 
