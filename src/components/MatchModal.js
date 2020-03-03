@@ -22,15 +22,62 @@ const styles = {
 const MatchModal = (props) => {
   
   const [open, setOpen] = React.useState(false);
+  const [showWinner, setShowWinner] = React.useState(false)
+  const [fireWorks, setFireWorks] = React.useState(false)
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+      setOpen(false);
   };
-  console.log('props: ', props)
+
+  const handleShowWinner = () => {
+    setShowWinner(true)
+  }
+
+  const handleFireWorks = () => {
+
+  }
+ 
+
+  const modalContent = () => {
+      if (!showWinner) {
+          return (
+            <div>
+            <div className="modal-content" style={{'width': '500px', 'height': '200px'}}>
+                <div className="modal-team1"></div>
+                <h2>Team1 VS Team2</h2>
+                <div className="modal-team2"></div>
+            </div>
+            <DialogActions style={{'display': 'flex', 'justifyContent': 'center'}}>
+                <Button onClick={handleClose} color="primary">
+                    Team1
+                </Button>
+                <Button onClick={handleShowWinner} color="primary">
+                    Team2
+                </Button>
+            </DialogActions>
+            </div>
+          )
+      } else if (showWinner) {
+          return (
+              <div>
+                  <div className="modal-content" style={{'width': '300px', 'height': '450px'}}>
+                      <div className="modal-winner"></div>
+                      <h2 className="modal-winner-teamName">Team Poo Progresses!</h2>
+                  </div>
+                  <DialogActions style={{'display': 'flex', 'justifyContent': 'center'}}>
+                    <Button onClick={handleClose} color="primary">
+                        Continue
+                    </Button>
+                </DialogActions>
+              </div>
+          )
+      }
+  }
+  
   return (
       <div>
         <Button variant="outlined" color="primary" onClick={handleClickOpen}>
@@ -45,13 +92,12 @@ const MatchModal = (props) => {
             aria-describedby="alert-dialog-slide-description"
             className={props.classes.matchModal}
         >
-            {/* <DialogContent style={{'width': '500px', 'height': '100px'}}> */}
-            <div className="modal-content" style={{'width': '500px', 'height': '200px'}}>
+            {modalContent()}
+            {/* <div className="modal-content" style={{'width': '500px', 'height': '200px'}}>
                 <div className="modal-team1"></div>
                 <h2>Team1 VS Team2</h2>
                 <div className="modal-team2"></div>
             </div>
-            {/* </DialogContent>  */}
             <DialogActions style={{'display': 'flex', 'justifyContent': 'center'}}>
                 <Button onClick={handleClose} color="primary">
                     Team1
@@ -59,7 +105,7 @@ const MatchModal = (props) => {
                 <Button onClick={handleClose} color="primary">
                     Team2
                 </Button>
-            </DialogActions>
+            </DialogActions> */}
         </Dialog>
       </div>
   )
