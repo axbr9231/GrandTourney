@@ -22,7 +22,7 @@ const Team = (props) => {
     }
 
     return (
-        <Tooltip title={<TeamInfo teamName={props.name} />} interactive>
+        <Tooltip title={<TeamInfo teamName={props.name} />} interactive leaveDelay={1000}>
             <div 
                 className={'team ' + className}
                 onClick={changeClassName}

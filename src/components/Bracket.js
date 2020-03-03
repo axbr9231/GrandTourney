@@ -61,7 +61,7 @@ const Bracket = ({ teamArray }) => {
         }
     }
 
-    console.log('rounds, bitch: ', rounds);
+    console.log('rounds: ', rounds);
 
     return (
         <div id="bracket">
