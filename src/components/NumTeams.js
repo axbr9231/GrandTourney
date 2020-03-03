@@ -15,6 +15,10 @@ const useStyles = makeStyles(theme => ({
   },
   select: {
     width: '150px',
+    textAlign: 'center',
+    fontSize: '20px',
+    fontWeight: 'bold'
+    
   }
 }));
 
