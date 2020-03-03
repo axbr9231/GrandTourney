@@ -305,13 +305,14 @@ body {
   position: absolute;
   overflow: auto;
   border: 4px solid grey;
-  top: 0px;
+  top: 5px;
   background-image: url(confetti.gif);
   
 }
 
 .modal-winner-teamName {
   top: 25px;
+  position: relative;
 }
 
 .modal-content {

@@ -19,6 +19,7 @@ const styles = {
     }
 };
 
+
 const MatchModal = (props) => {
   
   const [open, setOpen] = React.useState(false);
@@ -31,6 +32,7 @@ const MatchModal = (props) => {
 
   const handleClose = () => {
       setOpen(false);
+      setTimeout(() => {setShowWinner(false)}, 200)
   };
 
   const handleShowWinner = () => {
