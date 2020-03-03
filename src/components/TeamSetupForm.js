@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
       },
     },
   }));
-const TeamSetupForm = ({ id, handleTeamNameChange }) => {
+const TeamSetupForm = ({ id, handleTeamNameChange, sendTeamInfo }) => {
 
   const classes = useStyles();
   const [teamName, setTeamName] = useState('');
@@ -31,9 +31,13 @@ const TeamSetupForm = ({ id, handleTeamNameChange }) => {
           id={id}
           label="Team Name"
           onChange={updateTeamName}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              document.getElementsByTagName('button')[0].click();
+            }
+            }}
         />
-        {/* <label for="myfile" className="team-label">Upload an Image</label>
-        <Input type="file" name="myfile" className="team-input"/>    */}
       </div>
       <aside>
       </aside>

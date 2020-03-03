@@ -11,12 +11,11 @@ const TeamSetup = ({ numTeams, handleTeamNameChange }) => {
     for (const input of inputs) {
       teams.push(input.value);
     }
-    console.log('teams: ', teams);
   }
   
   return (
     <div>
-      {new Array(numTeams).fill(1).map((undef, i) => <TeamSetupForm key={i} id={`${i}form`} handleTeamNameChange={handleTeamNameChange}/>)}
+      {new Array(numTeams).fill(1).map((undef, i) => <TeamSetupForm key={i} id={`${i}form`} handleTeamNameChange={handleTeamNameChange} sendTeamInfo={sendTeamInfo} />)}
       <Link to='/bracket'>
         <Button variant='contained' color='primary' onClick={sendTeamInfo}>Create Bracket</Button>
       </Link>
