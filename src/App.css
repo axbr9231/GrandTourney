@@ -11,6 +11,12 @@
   justify-content: center;
 }
 
+#setupPage {
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+
 .top-team {
   top: -25px;
 }

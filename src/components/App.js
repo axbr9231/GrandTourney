@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../App.css';
-import NumTeams from './NumTeams';
 import TeamSetup from './TeamSetup'
 import Bracket from './Bracket'
 import { BrowserRouter as Router, Route } from 'react-router-dom'; 
@@ -8,7 +7,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 const App = () => {
 
   const [numTeams, changeNumTeams] = useState(0); 
-  const [teamNames, setTeamNames] = useState([]);
   const [teamArray, changeTeamArray] = useState([]);
 
   const setNumTeams = (e) => {
@@ -23,8 +21,7 @@ const App = () => {
 
   return (
     <Router>
-      <Route path='/' exact render={(props) => <NumTeams setNumTeams={setNumTeams} />} />
-      <Route path='/teams' render={(props) => <TeamSetup numTeams={numTeams} handleTeamNameChange={handleTeamNameChange} />} />
+      <Route path='/' exact render={(props) => <TeamSetup numTeams={numTeams} setNumTeams={setNumTeams} handleTeamNameChange={handleTeamNameChange} />} />
       <Route path='/bracket' render={(props) => <Bracket teamArray={teamArray} />} />
     </Router>
   )
