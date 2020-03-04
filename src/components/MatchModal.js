@@ -61,18 +61,18 @@ const MatchModal = (props) => {
     //     return () => clearTimeout(startInterval);
     // }, []);
 
-    const startInterval = () => {
-        setTimeout(() => {
-            // setIndexes(index => index + 1)
-            console.log(index)
-            index++;
-            if (index < splitWinner.length - 1 && showWinner) {
-                startInterval()
-            } else {
-                clearTimeout(startInterval)
-            }
-        }, 400);
-    }
+    // const startInterval = () => {
+    //     setTimeout(() => {
+    //         // setIndexes(index => index + 1)
+    //         console.log(index)
+    //         index++;
+    //         if (index < splitWinner.length - 1 && showWinner) {
+    //             startInterval()
+    //         } else {
+    //             clearTimeout(startInterval)
+    //         }
+    //     }, 400);
+    // }
     
 
   const testWinner = 'Team Poo'
@@ -133,7 +133,7 @@ const MatchModal = (props) => {
                           return ( */}
                             {/* <Slide direction="down" in={showWinner} mountOnEnter unmountOnExit timeout={1000}> */}
                                 <div>
-                                <DroppingLetter letters={splitWinner} showWinner={showWinner} index={index}/>
+                                <DroppingLetter letters={splitWinner} showWinner={showWinner} index={index} />
                                 </div>
                             {/* </Slide> */}
                           {/* )

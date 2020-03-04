@@ -6,21 +6,24 @@ const DroppingLetter = React.forwardRef((props, ref) => {
 
     const [sliceIndexes, setIndexes] = React.useState(1)
     console.log('letters length: ', props.letters.length)
-    // useEffect(() => {
-    //     const indexing = setInterval(() => {
-    //         if (sliceIndexes < props.letters.length - 1) {
-    //             setIndexes(index => index + 1)
-    //         }
-    //     }, 1);
-    //         return () => clearInterval(indexing)}, [])
+    
+    useEffect(() => {
+        const indexing = setInterval(() => {
+            if (sliceIndexes < props.letters.length) {
+                setIndexes(index => index + 1)
+            } else {
+                clearInterval(indexing);
+            }
+        }, 250);
+            return () => clearInterval(indexing)}, [])
 
             
-    //     }
+        console.log('index: ', sliceIndexes)
 
-
+   
     return (
         <div className="winner-text">
-            {props.letters.slice(props.letters[0], props.index).map((letter, i) => {
+            {props.letters.slice(props.letters[0], sliceIndexes).map((letter, i) => {
                 console.log('letter: ', letter)
                 if (letter === ' ') {
                     return (
@@ -30,7 +33,7 @@ const DroppingLetter = React.forwardRef((props, ref) => {
                     )
                 }
                 return (
-                    <Slide direction="down" in={props.showWinner} mountOnEnter unmountOnExit timeout={2000} key={i}>
+                    <Slide direction="down" in={props.showWinner} mountOnEnter unmountOnExit timeout={200} key={i}>
                         <div>
                             <h2 className="modal-winner-teamName">{letter}</h2>
                         </div>
