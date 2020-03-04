@@ -315,6 +315,13 @@ body {
   position: relative;
 }
 
+.winner-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .modal-content {
   display: flex;
   align-items: center;
@@ -325,4 +332,8 @@ body {
   margin: 32px;
   position: relative;
   overflow-y: visible !important;
+}
+
+.spacing {
+  width: 10px;
 }
