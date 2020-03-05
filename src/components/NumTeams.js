@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     minWidth: 120,
   },
   select: {
-    width: '150px'
+    width: '150px',
   }
 }));
 
@@ -31,7 +31,7 @@ const NumTeams = (props) => {
                   <MenuItem key={i + 1} value={i + 1}>{i + 1}</MenuItem>
               ))}
             </Select>
-            <Link to='/teams'><Button variant="contained" color="primary">Submit</Button></Link>
+            {/* <Link to='/teams'><Button variant="contained" color="primary">Submit</Button></Link> */}
           </FormControl>
         </div>
     )

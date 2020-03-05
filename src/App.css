@@ -9,11 +9,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 
 h2 {
   margin: 0;
+}
+
+#setupPage {
+  display: flex;
+  align-items: center;
+  flex-flow: column;
 }
 
 .top-team {
@@ -103,16 +108,15 @@ h2 {
   }
 }
 
-  @keyframes top-team-move {
-    from {
-      right: 175px;
-    }
-    
-    to {
-
-      right: -25px;
-    }
+@keyframes top-team-move {
+  from {
+    right: 175px;
   }
+
+  to {
+    right: -25px;
+  }
+}
 
 .bottom-team {
   bottom: -25px;
@@ -199,12 +203,10 @@ h2 {
 
 @keyframes bottom-team-move {
   from {
-    
     right: 175px;
   }
-  
+
   to {
-    
     right: -25px;
   }
 }
@@ -216,6 +218,7 @@ h2 {
   position: absolute;
   z-index: -1;
   padding-left: 25px;
+  display: flex;
 }
 
 .match {
@@ -247,7 +250,6 @@ body {
   height: 300px;
   margin-top: 150px;
   margin-bottom: 300px;
-  
 }
 
 .round3 {

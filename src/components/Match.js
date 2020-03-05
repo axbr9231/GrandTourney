@@ -1,33 +1,42 @@
 import React, {useState} from 'react';
 import '../App.css';
-import RealTeam from './Team.js'
+import Team from './Team.js'
 
-const Match = (props) => {
-    console.log('match props: ', props);
-    const team1name = props.teams[0];
-    const team2name = props.teams[1];
-    const team1initials = team1name.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('');
-    const team2initials = team2name.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('');
+const Match = ({ round, teams, index, updateNextRound }) => {
 
-    // console.log(team1initials);
-    // console.log(team2initials);
+    let hideMatch = !teams[0] && !teams[1] && round === '1';
+
+    const [teamsState, setTeamsState] = useState(teams);
+
+    const setWinner = teamId => {
+        if (teamId === 0) {
+            updateNextRound(parseInt(round), parseInt(index), teams[0]);
+        } else {
+            updateNextRound(parseInt(round), parseInt(index), teams[1]);
+        }
+        setTeamsState([undefined, undefined]);
+    }
 
     return (
-        <div className={props.round + ' match'}>
-            <RealTeam 
+        <div className={`round${round} match`} style={hideMatch ? {'visibility': 'hidden'} : null} >
+            {teamsState[0] ? <Team 
                 teamPositionStart="top-team" 
                 teamPositionEnd="top-team-end" 
                 winningTeamEnd="winning-team-top"
                 losingTeamEnd="losing-team-top"
-                initials={team1initials}
-                />
-            <RealTeam 
+                teamId={0}
+                setWinner={setWinner}
+                name={teamsState[0]}
+                /> : null}
+            {teamsState[1] ? <Team 
                 teamPositionStart="bottom-team" 
                 teamPositionEnd="bottom-team-end"
                 winningTeamEnd="winning-team-bottom"
                 losingTeamEnd="losing-team-bottom"
-                initials={team2initials}
-                />
+                teamId={1}
+                setWinner={setWinner}
+                name={teamsState[1]}
+                /> : null}
         </div>
     )
 }
