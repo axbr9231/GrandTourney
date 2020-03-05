@@ -11,10 +11,9 @@
   justify-content: center;
 }
 
-/* #select {
-  display: flex;
-  justify-content: center;
-} */
+h2 {
+  margin: 0;
+}
 
 #setupPage {
   display: flex;
@@ -270,4 +269,43 @@ body {
 
 .team-input {
   margin-top: 40px;
+}
+
+
+.modal-team1 {
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+  background-color: aqua;
+  z-index: 1;
+  position: absolute;
+  overflow: auto;
+  left: -40px;
+  top: -40px;
+  border: 4px solid grey;
+}
+
+.modal-team2 {
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+  background-color: aqua;
+  z-index: 1;
+  position: absolute;
+  overflow: auto;
+  right: -40px;
+  bottom: -40px;
+  border: 4px solid grey;
+}
+
+.modal-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MuiDialog-paper {
+  margin: 32px;
+  position: relative;
+  overflow-y: visible !important;
 }

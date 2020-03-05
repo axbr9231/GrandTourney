@@ -3,6 +3,7 @@ import '../App.css';
 import TeamSetup from './TeamSetup'
 import Bracket from './Bracket'
 import { BrowserRouter as Router, Route } from 'react-router-dom'; 
+import MatchModal from './MatchModal';
 
 const App = () => {
 
@@ -20,6 +21,7 @@ const App = () => {
   }
 
   return (
+
     <Router>
       <Route path='/' exact render={(props) => <TeamSetup numTeams={numTeams} setNumTeams={setNumTeams} handleTeamNameChange={handleTeamNameChange} />} />
       <Route path='/bracket' render={(props) => <Bracket teamArray={teamArray} />} />
