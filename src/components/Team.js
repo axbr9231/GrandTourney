@@ -3,10 +3,12 @@ import { Tooltip } from '@material-ui/core'
 import TeamInfo from './TeamInfo';
 import '../App.css';
 
-const Team = (props) => {
+const Team = ({ team, ...props }) => {
+
+    console.log('team from Team: ', team);
     let initials;
-    if (props.name) {
-        initials = props.name.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('');
+    if (team.name) {
+        initials = team.name.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('');
     };
 
     const [className, setClassName] = useState(props.teamPositionStart)
