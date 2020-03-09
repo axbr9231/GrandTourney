@@ -15,10 +15,24 @@ h2 {
   margin: 0;
 }
 
+#root {
+  display: flex;
+}
+
 #setupPage {
   display: flex;
   align-items: center;
   flex-flow: column;
+  width: 20vw;
+}
+
+#bracket {
+  width: 80vw;
+  min-height: 100vh;
+  background-color: chartreuse;
+  z-index: -1;
+  padding-left: 25px;
+  display: flex;
 }
 
 .top-team {
@@ -211,16 +225,6 @@ h2 {
   }
 }
 
-#bracket {
-  width: 100%;
-  height: auto;
-  background-color: chartreuse;
-  position: absolute;
-  z-index: -1;
-  padding-left: 25px;
-  display: flex;
-}
-
 .match {
   width: 200px;
   border-top: 2px solid black;
@@ -270,7 +274,6 @@ body {
 .team-input {
   margin-top: 40px;
 }
-
 
 .modal-team1 {
   height: 150px;
