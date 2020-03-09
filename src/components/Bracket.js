@@ -32,10 +32,16 @@ const initializeRounds = (array) => {
     const round2Teams = teams.splice(0, round2TeamCount);
     const round1Teams = teams;
     const round2Matches = rounds[2].slice();
+    let singleTeamByeCount = rounds[1].length - round2TeamCount;
     while (round2Teams.length) {
         const randomMatchIndex = Math.floor(Math.random() * round2Matches.length);
-        round2Matches[randomMatchIndex][0] = round2Teams.pop();
-        round2Matches[randomMatchIndex][1] = round2Teams.pop();
+        if (singleTeamByeCount) {
+            round2Matches[randomMatchIndex][Math.floor(Math.random() * 2)] = round2Teams.pop();
+            singleTeamByeCount--;
+        } else {
+            round2Matches[randomMatchIndex][0] = round2Teams.pop();
+            round2Matches[randomMatchIndex][1] = round2Teams.pop();
+        }
         round2Matches.splice(randomMatchIndex, 1);
     }
     const round2MatchesFlat = rounds[2].flat();
@@ -45,7 +51,6 @@ const initializeRounds = (array) => {
             rounds[1][i][1] = round1Teams.pop();
         }
     }
-    console.log('rounds: ', rounds);
     return rounds;
 }
 
