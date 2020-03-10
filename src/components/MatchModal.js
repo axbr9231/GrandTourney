@@ -94,9 +94,8 @@ const MatchModal = (props) => {
 
   const handleShowWinner = () => {
     handleSplitWinner(testWinner);
-    // handleSliceIndexes()
     setShowWinner(true)
-    // startInterval();
+
   }
 
   const handleFireWorks = () => {
