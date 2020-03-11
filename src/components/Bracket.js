@@ -5,6 +5,8 @@ import Round from './Round.js';
 const Bracket = ({ rounds, updateNextRound }) => {
 
     console.log('rounds from Bracket: ', rounds);
+    
+    
 
     return (
         <div id="bracket">

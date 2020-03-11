@@ -30,7 +30,7 @@ h2 {
   width: 80vw;
   min-height: 100vh;
   background-color: chartreuse;
-  z-index: -1;
+  /* z-index: -1; */
   padding-left: 25px;
   display: flex;
 }
@@ -46,7 +46,7 @@ h2 {
   animation-fill-mode: forwards;
 }
 
-.losing-team-top {
+.losing-team {
   background-color: rgba(255, 0, 0, 0.4);
 }
 
