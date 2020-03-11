@@ -28,51 +28,11 @@ const MatchModal = (props) => {
   const [showWinner, setShowWinner] = React.useState(false)
   const [fireWorks, setFireWorks] = React.useState(false)
   const [splitWinner, setSplitWinner] = React.useState([])
-  const [sliceIndexes, setIndexes] = React.useState(1)
+ 
 
 
-//   useEffect(() => {
-//     const indexing = setInterval(() => {
-        
-//         setIndexes(index => index + 1)
-        
-//     }, 1000);
-//     return () => {
-//         if (sliceIndexes >= splitWinner.length - 1) {
-//             clearInterval(indexing)
-//         }
-//     }
-//   })
-    let index = 1;
-    // useEffect(() => {
-    //     console.log(index)
-    //     const startInterval = () => {
-    //         setTimeout(() => {
-    //             // setIndexes(index => index + 1)
-    //             // index < splitWinner.length ? index++ : startInterval();
-    //             console.log(index)
-    //             index = index + 1;
-    //             if (index < splitWinner.length - 1) {
-    //                 startInterval()
-    //             }
-    //         }, 400);
-    //     }
-        
-    //     return () => clearTimeout(startInterval);
-    // }, []);
 
-    // const startInterval = () => {
-    //     setTimeout(() => {
-    //         // setIndexes(index => index + 1)
-    //         console.log(index)
-    //         index++;
-    //         if (index < splitWinner.length - 1 && showWinner) {
-    //             startInterval()
-    //         } else {
-    //             clearTimeout(startInterval)
-    //         }
-    //     }, 400);
-    // }
+  let index = 1;
     
 
   const testWinner = 'Team Poo'
@@ -84,20 +44,29 @@ const MatchModal = (props) => {
   }
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setOpen(props.isOpen);
   };
 
   const handleClose = () => {
-      setOpen(false);
+      setOpen(props.isOpen);
       setTimeout(() => {setShowWinner(false)}, 200)
   };
 
-  const handleShowWinner = () => {
-    handleSplitWinner(testWinner);
+  const handleShowWinnerTop = () => {
+    let buttonValue = document.getElementsByClassName('topTeam-wins')
+    handleSplitWinner(buttonValue.Value);
+
     setShowWinner(true)
 
   }
 
+  const handleShowWinnerBottom = () => {
+    let buttonValue = document.getElementsByClassName('bottomTeam-wins')
+    handleSplitWinner(buttonValue.Value);
+
+    setShowWinner(true)
+
+  }
   const handleFireWorks = () => {
 
   }
@@ -110,15 +79,15 @@ const MatchModal = (props) => {
             <div>
             <div className="modal-content" style={{'width': '500px', 'height': '200px'}}>
                 <div className="modal-team1"></div>
-                <h2>Team1 VS Team2</h2>
+                <h2>{props.topTeamName} VS {props.bottomTeamName}</h2>
                 <div className="modal-team2"></div>
             </div>
             <DialogActions style={{'display': 'flex', 'justifyContent': 'center'}}>
-                <Button onClick={handleClose} color="primary">
-                    Team1
+                <Button onClick={handleShowWinnerTop} color="primary" className="topTeam-wins">
+                {props.topTeamName}
                 </Button>
-                <Button onClick={handleShowWinner} color="primary">
-                    Team2
+                <Button onClick={handleShowWinnerBottom} color="primary" className="bottomTeam-wins">
+                {props.bottomTeamName}
                 </Button>
             </DialogActions>
             </div>
@@ -128,16 +97,9 @@ const MatchModal = (props) => {
               <div>
                   <div className="modal-content" style={{'width': '300px', 'height': '450px'}}>
                       <div className="modal-winner"></div>
-                      {/* {splitWinner.slice(splitWinner[0], sliceIndexes).map((letter, i) => {
-                          return ( */}
-                            {/* <Slide direction="down" in={showWinner} mountOnEnter unmountOnExit timeout={1000}> */}
-                                <div>
-                                <DroppingLetter letters={splitWinner} showWinner={showWinner} index={index} />
-                                </div>
-                            {/* </Slide> */}
-                          {/* )
-                      })} */}
-                      {/* <h2 className="modal-winner-teamName">Team Poo Progresses!</h2> */}
+                        <div>
+                        <DroppingLetter letters={splitWinner} showWinner={showWinner} index={index} />
+                        </div>                 
                   </div>
                   <DialogActions style={{'display': 'flex', 'justifyContent': 'center'}}>
                     <Button onClick={handleClose} color="primary">
@@ -151,9 +113,9 @@ const MatchModal = (props) => {
   
   return (
       <div>
-        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
             Slide in alert dialog
-        </Button>
+        </Button> */}
         <Dialog
             open={open}
             TransitionComponent={Transition}
@@ -164,19 +126,6 @@ const MatchModal = (props) => {
             className={props.classes.matchModal}
         >
             {modalContent()}
-            {/* <div className="modal-content" style={{'width': '500px', 'height': '200px'}}>
-                <div className="modal-team1"></div>
-                <h2>Team1 VS Team2</h2>
-                <div className="modal-team2"></div>
-            </div>
-            <DialogActions style={{'display': 'flex', 'justifyContent': 'center'}}>
-                <Button onClick={handleClose} color="primary">
-                    Team1
-                </Button>
-                <Button onClick={handleClose} color="primary">
-                    Team2
-                </Button>
-            </DialogActions> */}
         </Dialog>
       </div>
   )
