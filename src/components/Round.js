@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 import '../App.css';
 import Match from './Match.js'
 
-const Round = ({ round, matches, updateNextRound }) => {
+const Round = ({ round, matches, currentMatch, updateNextRound }) => {
 
     console.log(`matches from round ${round}: ${matches}`);
 
@@ -13,7 +13,7 @@ const Round = ({ round, matches, updateNextRound }) => {
                 <Grid item>
                 {matches.map((match, i) => {
                     return (
-                        <Match round={round} key={i} index={i} match={match} updateNextRound={updateNextRound} />
+                        <Match round={round} key={i} index={i} match={match} currentMatch={currentMatch} updateNextRound={updateNextRound} />
                     )
                 }) }
                 </Grid>

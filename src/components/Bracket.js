@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import Round from './Round.js';
 
-const Bracket = ({ rounds, updateNextRound }) => {
+const Bracket = ({ rounds, updateNextRound, currentMatch }) => {
 
     console.log('rounds from Bracket: ', rounds);
     
@@ -10,7 +10,7 @@ const Bracket = ({ rounds, updateNextRound }) => {
 
     return (
         <div id="bracket">
-            {Object.keys(rounds).map(round => <Round key={round} round={round} matches={rounds[round]} updateNextRound={updateNextRound} />)}
+            {Object.keys(rounds).map(round => <Round key={round} round={round} matches={rounds[round]} updateNextRound={updateNextRound} currentMatch={currentMatch} />)}
         </div>
     )
 }

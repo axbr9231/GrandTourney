@@ -143,27 +143,15 @@ const App = () => {
     
     console.log('useEffect Variables: ', 'rounds: ', rounds, 'roundId: ', roundId, 'matchIndex: ', matchIndex)
     if (rounds[roundId]) {
-      setCurrentMatch(rounds[roundId][matchIndex]);
+      if (rounds[roundId][matchIndex].topTeam) {
+        rounds[roundId][matchIndex].activateMatch();
+        setCurrentMatch(rounds[roundId][matchIndex]);
+      } else {
+        setMatchIndex(matchIndex + 1);
+      } 
     }
   }, [rounds, roundId, matchIndex])
-
-  useEffect(() => {
-    if (currentMatch.activateMatch) {
-      currentMatch.activateMatch()
-    }
-  }, [currentMatch]);
   
-  const activateNextMatch = () => {
-    if (rounds[roundId][matchIndex + 1]) {
-      setMatchIndex(matchIndex++);
-    } else {
-      matchIndex = 0;
-      setRoundId(roundId++);
-    }
-    
-    currentMatch.activateMatch();
-  }
-
   const setNumTeams = e => {
     changeNumTeams(e.target.value)
   }
@@ -173,7 +161,6 @@ const App = () => {
     newTeamArray[index] = text;
     changeTeamArray(newTeamArray);
   }
-
 
   const createBracket = () => {
     setRounds(initializeRounds(teamArray))

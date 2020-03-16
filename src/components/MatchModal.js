@@ -1,18 +1,11 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import Team from './Team';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import Slide from '@material-ui/core/Slide';
-import Button from '@material-ui/core/Button';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContentText from '@material-ui/core/DialogContentText';
+import { Dialog, Grow, Button, DialogActions }from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import DroppingLetter from './DroppingLetter';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
+    return <Grow direction="up" ref={ref} {...props} />;
   });
 
 const styles = {
@@ -24,33 +17,18 @@ const styles = {
 
 const MatchModal = (props) => {
   
-  const [open, setOpen] = React.useState(false);
   const [showWinner, setShowWinner] = React.useState(false)
-  const [fireWorks, setFireWorks] = React.useState(false)
   const [splitWinner, setSplitWinner] = React.useState([])
- 
-
-
 
   let index = 1;
     
 
-  const testWinner = 'Team Poo'
   const handleSplitWinner = (string) => {
     string += ' Progresses!'
     let stringArr = string.split('');
     console.log(stringArr)
     setSplitWinner(stringArr.slice());
   }
-
-  const handleClickOpen = () => {
-    setOpen(props.isOpen);
-  };
-
-  const handleClose = () => {
-      setOpen(props.isOpen);
-      setTimeout(() => {setShowWinner(false)}, 200)
-  };
 
   const handleShowWinnerTop = () => {
     let buttonValue = document.getElementsByClassName('topTeam-wins')
@@ -66,12 +44,7 @@ const MatchModal = (props) => {
 
     setShowWinner(true)
 
-  }
-  const handleFireWorks = () => {
-
-  }
-  
-
+  }  
 
   const modalContent = () => {
       if (!showWinner) {
@@ -102,7 +75,7 @@ const MatchModal = (props) => {
                         </div>                 
                   </div>
                   <DialogActions style={{'display': 'flex', 'justifyContent': 'center'}}>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={props.closeModal} color="primary">
                         Continue
                     </Button>
                 </DialogActions>
@@ -117,10 +90,11 @@ const MatchModal = (props) => {
             Slide in alert dialog
         </Button> */}
         <Dialog
-            open={open}
+            open={props.isOpen}
             TransitionComponent={Transition}
+            transitionDuration={3000}
             keepMounted
-            onClose={handleClose}
+            onClose={props.closeModal}
             aria-labelledby="alert-dialog-slide-title"
             aria-describedby="alert-dialog-slide-description"
             className={props.classes.matchModal}

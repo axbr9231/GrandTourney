@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
 import Team from './Team.js'
 import MatchModal from './MatchModal';
 
-const Match = ({ round, match, index, updateNextRound }) => {
+const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
 
     console.log('match from round', round, 'match: ', match);
 
     let hideMatch = !match.topTeam && !match.bottomTeam && round === '1';
-    let modalIsOpen = false;
+
+    const [modalOpen, setModalOpen] = useState(false);
+
+    useEffect(() => {
+        if (match === currentMatch) {
+            setModalOpen(true);
+        }
+    }, [currentMatch, match])
+
+    const closeModal = () =>{
+        setModalOpen(false)
+    }
 
     const setWinner = team => {
         if (!team.isTop) {
@@ -23,19 +34,19 @@ const Match = ({ round, match, index, updateNextRound }) => {
         match.isActive = false;
     }
 
-    const openModal = () => {
-        modalIsOpen = true;
-    }
+    // const openModal = () => {
+    //     modalIsOpen = true;
+    // }
 
-    const showMatchModal = () => {
-        setTimeout(() => {
-            openModal();
-        }, 3500)
-    }
+    // const showMatchModal = () => {
+    //     setTimeout(() => {
+    //         openModal();
+    //     }, 3500)
+    // }
 
-    if (match.isActive) {
-        openModal()
-    }
+    // if (match.isActive) {
+    //     openModal()
+    // }
 
     return (
         <div className={`round${round} match`} style={hideMatch ? {'visibility': 'hidden'} : null} >
@@ -48,9 +59,10 @@ const Match = ({ round, match, index, updateNextRound }) => {
                 team={match.bottomTeam}
                 /> : null}
             <MatchModal 
-            isOpen={modalIsOpen} 
+            isOpen={modalOpen} 
             topTeamName={match.topTeam ? match.topTeam.name : null} 
             bottomTeamName={match.bottomTeam ? match.bottomTeam.name : null}
+            closeModal={closeModal}
             />
         </div>
     )
