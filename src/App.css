@@ -312,7 +312,9 @@ body {
   border: 4px solid grey;
   top: 5px;
   background-image: url(confetti.gif);
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-winner-teamName {

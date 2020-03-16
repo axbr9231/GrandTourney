@@ -19,6 +19,7 @@ const MatchModal = (props) => {
   
   const [showWinner, setShowWinner] = React.useState(false)
   const [splitWinner, setSplitWinner] = React.useState([])
+  const [winnerInitials, setWinnerInitials] = React.useState('');
 
   let index = 1;
     
@@ -32,16 +33,16 @@ const MatchModal = (props) => {
 
   const handleShowWinnerTop = () => {
     let buttonValue = document.getElementsByClassName('topTeam-wins')
-    handleSplitWinner(buttonValue.Value);
-
+    handleSplitWinner(props.topTeamName);
+    setWinnerInitials(props.topTeamName)
     setShowWinner(true)
 
   }
 
   const handleShowWinnerBottom = () => {
     let buttonValue = document.getElementsByClassName('bottomTeam-wins')
-    handleSplitWinner(buttonValue.Value);
-
+    handleSplitWinner(props.bottomTeamName);
+    setWinnerInitials(props.bottomTeamName)
     setShowWinner(true)
 
   }  
@@ -69,7 +70,7 @@ const MatchModal = (props) => {
           return (
               <div>
                   <div className="modal-content" style={{'width': '300px', 'height': '450px'}}>
-                      <div className="modal-winner"></div>
+                    <div className="modal-winner"><h3 style={{'position': 'absolute'}}>{winnerInitials}</h3></div>
                         <div>
                         <DroppingLetter letters={splitWinner} showWinner={showWinner} index={index} />
                         </div>                 
