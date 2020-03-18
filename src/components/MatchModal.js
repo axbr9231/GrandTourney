@@ -27,8 +27,8 @@ const MatchModal = (props) => {
   const handleSplitWinner = (string) => {
     string += ' Progresses!'
     let stringArr = string.split('');
-    console.log(stringArr)
-    setSplitWinner(stringArr.slice());
+    console.log('stringarray: ', stringArr)
+    setSplitWinner(stringArr);
   }
 
   const handleShowWinnerTop = () => {

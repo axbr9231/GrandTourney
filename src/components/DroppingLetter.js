@@ -15,7 +15,7 @@ const DroppingLetter = React.forwardRef((props, ref) => {
                 clearInterval(indexing);
             }
         }, 250);
-            return () => clearInterval(indexing)}, [])
+            return () => clearInterval(indexing)}, [sliceIndexes])
 
             
         console.log('index: ', sliceIndexes)
@@ -23,7 +23,7 @@ const DroppingLetter = React.forwardRef((props, ref) => {
    
     return (
         <div className="winner-text">
-            {props.letters.slice(props.letters[0], sliceIndexes).map((letter, i) => {
+            {props.letters.slice(0, sliceIndexes).map((letter, i) => {
                 console.log('letter: ', letter)
                 if (letter === ' ') {
                     return (
