@@ -5,51 +5,50 @@ import MatchModal from './MatchModal';
 
 const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
 
-    console.log('match from round', round, 'match: ', match);
-
-    let hideMatch = !match.topTeam && !match.bottomTeam && round === '1';
+    // let hideMatch = !match.topTeam && !match.bottomTeam && round === '1';
 
     const [modalOpen, setModalOpen] = useState(false);
 
+    let winningTeam;
+
     useEffect(() => {
         if (match === currentMatch) {
-            setModalOpen(true);
+            setTimeout(() => {
+                setModalOpen(true);
+
+            }, 3000)
         }
     }, [currentMatch, match])
 
-    const closeModal = () =>{
-        setModalOpen(false)
+    const closeModal = (e) =>{
+        setModalOpen(false);
+        activateWinner(winningTeam);
     }
 
-    const setWinner = team => {
+    const setWinner = (team) => {
+        winningTeam = team;
+    }
+
+    const activateWinner = (team) => {
         if (!team.isTop) {
-            updateNextRound(parseInt(round), parseInt(index), match.topTeam);
             match.setWinner(match.bottomTeam, match.topTeam)
-        } else {
             updateNextRound(parseInt(round), parseInt(index), match.bottomTeam);
+        } else {
             match.setWinner(match.topTeam, match.bottomTeam)
+            updateNextRound(parseInt(round), parseInt(index), match.topTeam);
         }
-        match.topTeam = undefined;
-        match.bottomTeam = undefined;
+        setTimeout(() => {
+            if (team === match.topTeam) {
+                match.topTeam = undefined;
+            } else {
+                match.bottomTeam = undefined;
+            }
+        }, 2500);
         match.isActive = false;
     }
 
-    // const openModal = () => {
-    //     modalIsOpen = true;
-    // }
-
-    // const showMatchModal = () => {
-    //     setTimeout(() => {
-    //         openModal();
-    //     }, 3500)
-    // }
-
-    // if (match.isActive) {
-    //     openModal()
-    // }
-
     return (
-        <div className={`round${round} match`} style={hideMatch ? {'visibility': 'hidden'} : null} >
+        <div className={`round${round} match`} style={!match.isVisible ? {'visibility': 'hidden'} : null} >
             {match.topTeam ? <Team 
                 setWinner={setWinner}
                 team={match.topTeam}
@@ -60,9 +59,10 @@ const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
                 /> : null}
             <MatchModal 
             isOpen={modalOpen} 
-            topTeamName={match.topTeam ? match.topTeam.name : null} 
-            bottomTeamName={match.bottomTeam ? match.bottomTeam.name : null}
+            topTeam={match.topTeam ? match.topTeam : null} 
+            bottomTeam={match.bottomTeam ? match.bottomTeam : null}
             closeModal={closeModal}
+            setWinner={setWinner}
             />
         </div>
     )

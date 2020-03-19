@@ -4,7 +4,7 @@ import Round from './Round.js';
 
 const Bracket = ({ rounds, updateNextRound, currentMatch }) => {
 
-    console.log('rounds from Bracket: ', rounds);
+    
     
     
 

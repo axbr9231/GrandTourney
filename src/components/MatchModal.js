@@ -22,27 +22,30 @@ const MatchModal = (props) => {
   const [winnerInitials, setWinnerInitials] = React.useState('');
 
   let index = 1;
-    
 
+  const topTeamName = props.topTeam ? props.topTeam.name : null;
+  const bottomTeamName = props.bottomTeam ? props.bottomTeam.name : null;
+    
   const handleSplitWinner = (string) => {
     string += ' Progresses!'
     let stringArr = string.split('');
-    console.log('stringarray: ', stringArr)
     setSplitWinner(stringArr);
   }
 
   const handleShowWinnerTop = () => {
-    let buttonValue = document.getElementsByClassName('topTeam-wins')
-    handleSplitWinner(props.topTeamName);
-    setWinnerInitials(props.topTeamName)
+    
+    handleSplitWinner(topTeamName);
+    setWinnerInitials(topTeamName);
+    props.setWinner(props.topTeam)
     setShowWinner(true)
 
   }
 
   const handleShowWinnerBottom = () => {
-    let buttonValue = document.getElementsByClassName('bottomTeam-wins')
-    handleSplitWinner(props.bottomTeamName);
-    setWinnerInitials(props.bottomTeamName)
+    
+    handleSplitWinner(bottomTeamName);
+    setWinnerInitials(bottomTeamName);
+    props.setWinner(props.bottomTeam);
     setShowWinner(true)
 
   }  
@@ -53,15 +56,15 @@ const MatchModal = (props) => {
             <div>
             <div className="modal-content" style={{'width': '500px', 'height': '200px'}}>
                 <div className="modal-team1"></div>
-                <h2>{props.topTeamName} VS {props.bottomTeamName}</h2>
+                <h2>{topTeamName} VS {bottomTeamName}</h2>
                 <div className="modal-team2"></div>
             </div>
             <DialogActions style={{'display': 'flex', 'justifyContent': 'center'}}>
                 <Button onClick={handleShowWinnerTop} color="primary" className="topTeam-wins">
-                {props.topTeamName}
+                {topTeamName}
                 </Button>
                 <Button onClick={handleShowWinnerBottom} color="primary" className="bottomTeam-wins">
-                {props.bottomTeamName}
+                {bottomTeamName}
                 </Button>
             </DialogActions>
             </div>
@@ -93,7 +96,7 @@ const MatchModal = (props) => {
         <Dialog
             open={props.isOpen}
             TransitionComponent={Transition}
-            transitionDuration={3000}
+            transitionDuration={1000}
             keepMounted
             onClose={props.closeModal}
             aria-labelledby="alert-dialog-slide-title"

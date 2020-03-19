@@ -5,7 +5,6 @@ import '../App.css';
 
 const Team = ({ team, ...props }) => {
 
-    console.log('team from Team: ', team);
     let initials;
     if (team.name) {
         initials = team.name.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('');

@@ -5,8 +5,6 @@ import Match from './Match.js'
 
 const Round = ({ round, matches, currentMatch, updateNextRound }) => {
 
-    console.log(`matches from round ${round}: ${matches}`);
-
     return (
         <div>
             <Grid container >
