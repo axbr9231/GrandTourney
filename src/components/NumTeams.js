@@ -30,8 +30,8 @@ const NumTeams = ({ setNumTeams }) => {
           <FormControl className={classes.formControl}>
             <InputLabel id="label-id">Number of Teams</InputLabel>
             <Select labelId="label-id" id="select" onChange={setNumTeams} className={classes.select}>
-              {Array(16).fill(1).map((num, i) => (
-                  <MenuItem key={i + 1} value={i + 1}>{i + 1}</MenuItem>
+              {Array(14).fill(1).map((num, i) => (
+                  <MenuItem key={i} value={i + 3}>{i + 3}</MenuItem>
               ))}
             </Select>
           </FormControl>
