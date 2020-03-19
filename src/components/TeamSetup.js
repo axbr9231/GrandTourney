@@ -7,11 +7,17 @@ const TeamSetup = ({ numTeams, setNumTeams, handleTeamNameChange, createBracket 
   
   return (
     <div id="setupPage">
-      <NumTeams setNumTeams={setNumTeams} />
-      {new Array(numTeams).fill(1).map((undef, i) => <TeamSetupForm key={i} id={`${i}form`} handleTeamNameChange={handleTeamNameChange} />)}
-      {numTeams ? (
-      <Button variant='contained' color='primary' onClick={createBracket}>Create Bracket</Button>
-      ) : null}
+      <div id="leftPanelTopInfoDiv">
+        <NumTeams setNumTeams={setNumTeams} />
+      </div>
+      <div id="teamInfoDiv">
+        {new Array(numTeams).fill(1).map((undef, i) => <TeamSetupForm key={i} id={`${i}form`} handleTeamNameChange={handleTeamNameChange} />)}
+      </div>
+      <div id="leftPanelBottomButtonDiv">
+        {numTeams ? (
+          <Button className="leftPanelBottomButton" variant='contained' color='primary' onClick={createBracket}>Create Bracket</Button>
+        ) : null}
+      </div>
     </div>
   )
 }

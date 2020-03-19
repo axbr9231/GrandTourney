@@ -26,7 +26,7 @@ const NumTeams = ({ setNumTeams }) => {
     const classes = useStyles();
 
     return (
-        <div>
+        <div id="leftPanelTopInfoDiv">
           <FormControl className={classes.formControl}>
             <InputLabel id="label-id">Number of Teams</InputLabel>
             <Select labelId="label-id" id="select" onChange={setNumTeams} className={classes.select}>

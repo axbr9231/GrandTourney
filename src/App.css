@@ -11,6 +11,28 @@
   justify-content: center;
 }
 
+#leftPanelTopInfoDiv {
+  height: 8vh;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#teamInfoDiv {
+  height: 84vh;
+  overflow: scroll;
+  width: 95%;
+  /* scroll-padding-left: 4px; */
+}
+
+#leftPanelBottomButtonDiv {
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 h2 {
   margin: 0;
 }
@@ -341,8 +363,6 @@ body {
   overflow-y: visible !important;
 }
 
-
 .spacing {
   width: 10px;
 }
-
