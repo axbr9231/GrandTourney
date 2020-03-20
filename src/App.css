@@ -11,6 +11,10 @@
   justify-content: center;
 }
 
+.teamCard {
+  margin: 5px;
+}
+
 #leftPanelTopInfoDiv {
   height: 8vh;
   width: 90%;
@@ -46,6 +50,7 @@ h2 {
   align-items: center;
   flex-flow: column;
   width: 20vw;
+  background-color: rgb(85, 85, 85);
 }
 
 #bracket {

@@ -10,6 +10,7 @@ class Team {
     this.name = name;
     this.isTop = isTop;
     this.className = isTop ? 'top-team' : 'bottom-team';
+    this.lost = false;
   }
 
   activateTeam() {
@@ -22,6 +23,7 @@ class Team {
 
   setLoser() {
     this.className += ' losing-team';
+    this.lost = true;
   }
 }
 
@@ -64,12 +66,12 @@ const getRound2TeamCount = (length) => {
     return nextPowerOfTwo - length;
 }
 
-const initializeRounds = array => {
+const initializeRounds = (inputArray, mutatedArray) => {
     const rounds = {};
-    if (!array.length) {
+    if (!inputArray.length) {
       return rounds;
     }
-    const teams = _.shuffle(array);
+    const teams = _.shuffle(inputArray);
     const numRounds = Math.ceil(Math.log2(teams.length));
     rounds[2] = new Array(getRound2MatchCount(teams.length));
     for (let i = 0; i < rounds[2].length; i++) {
@@ -97,13 +99,17 @@ const initializeRounds = array => {
             const isTop = Math.floor(Math.random() * 2) ? false : true;
             if (isTop) {
               match.topTeam = new Team(round2Teams.pop(), true);
+              mutatedArray.push(match.topTeam);
             } else {
               match.bottomTeam = new Team(round2Teams.pop(), false);
+              mutatedArray.push(match.bottomTeam);
             }
             singleTeamByeCount--;
         } else {
           match.topTeam = new Team(round2Teams.pop(), true);
           match.bottomTeam = new Team(round2Teams.pop(), false);
+          mutatedArray.push(match.topTeam);
+          mutatedArray.push(match.bottomTeam);
         }
         round2Matches.splice(randomMatchIndex, 1);
     }
@@ -113,11 +119,15 @@ const initializeRounds = array => {
         const round1Match = rounds[1][i * 2];
         round1Match.topTeam = new Team(round1Teams.pop(), true);
         round1Match.bottomTeam = new Team(round1Teams.pop(), false);
+        mutatedArray.push(round1Match.topTeam);
+        mutatedArray.push(round1Match.bottomTeam);
       } 
       if (!round2Match.bottomTeam) {
         const round1Match = rounds[1][(i * 2) + 1];
         round1Match.topTeam = new Team(round1Teams.pop(), true);
         round1Match.bottomTeam = new Team(round1Teams.pop(), false);
+        mutatedArray.push(round1Match.topTeam);
+        mutatedArray.push(round1Match.bottomTeam);
       }
     }
     for (const match of rounds[1]) {
@@ -125,8 +135,11 @@ const initializeRounds = array => {
         match.isVisible = false;
       }
     }
+    console.log('mutatedArray: ', mutatedArray);
     return rounds;
 }
+
+const teamObjectsArray = [];
 
 const App = () => {
 
@@ -137,7 +150,7 @@ const App = () => {
   const [roundId, setRoundId] = useState(1)
   const [currentMatch, setCurrentMatch] = useState({});
   const [teamSetupComplete, setTeamSetupComplete] = useState(false);
-  
+ 
 
   
   useEffect(() => {
@@ -185,7 +198,7 @@ const App = () => {
   }
 
   const createBracket = () => {
-    setRounds(initializeRounds(teamArray))
+    setRounds(initializeRounds(teamArray, teamObjectsArray));
     setTeamSetupComplete(true);
   }
 
@@ -210,7 +223,7 @@ const App = () => {
     }, 3000)
   }
 
-
+console.log('Teamobjects array: ', teamObjectsArray)
   return (
     <Fragment>
       <TeamSetup 
@@ -221,7 +234,8 @@ const App = () => {
       createBracket={createBracket} 
       round={roundId}
       totalRounds={Object.keys(rounds).length}
-      setupComplete={teamSetupComplete} 
+      setupComplete={teamSetupComplete}
+      teamArray={teamObjectsArray}
       />
       <Bracket rounds={rounds} updateNextRound={updateNextRound} currentMatch={currentMatch}/>
     </Fragment>
