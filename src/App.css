@@ -25,7 +25,7 @@
 
 #teamInfoDiv {
   height: 84vh;
-  overflow: scroll;
+  overflow: auto;
   width: 95%;
   /* scroll-padding-left: 4px; */
 }
