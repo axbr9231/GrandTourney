@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, Fragment, useEffect } from 'react';
 import _ from 'lodash';
 import '../App.css';
@@ -143,8 +144,13 @@ const App = () => {
     
     console.log('useEffect Variables: ', 'rounds: ', rounds, 'roundId: ', roundId, 'matchIndex: ', matchIndex)
     if (rounds[roundId]) {
-      if (rounds[roundId][matchIndex] && !rounds[roundId][matchIndex].topTeam) {
+      if (rounds[roundId][matchIndex]) {
+        if (!rounds[roundId][matchIndex].topTeam) {
         setMatchIndex(matchIndex + 1);
+        }
+      } else {
+        setRoundId(roundId + 1);
+        setMatchIndex(0);
       }
     }
   }, [rounds, roundId, matchIndex]);
@@ -161,7 +167,7 @@ const App = () => {
           console.log('Match index after restting: ', 0)
         }
     }
-  }, [currentMatch])
+  }, [currentMatch]);
 
   const startMatch = () => {
     rounds[roundId][matchIndex].activateMatch();
