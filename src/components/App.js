@@ -11,10 +11,12 @@ class Team {
     this.isTop = isTop;
     this.className = isTop ? 'top-team' : 'bottom-team';
     this.lost = false;
+    this.active = false;
   }
 
   activateTeam() {
     this.className = this.isTop ? 'top-team-end' : 'bottom-team-end';
+    this.active = true;
   }
 
   setWinner() {
@@ -211,10 +213,12 @@ const App = () => {
           if (matchIndex % 2) {
             team.isTop = false;
             team.className = 'bottom-team';
+            team.active = false;
             match.bottomTeam = team;
           } else {
             team.isTop = true;
             team.className = 'top-team';
+            team.active = false;
             match.topTeam = team;
           }
           console.log('next round Match: ', match, ', matchINdex: ', matchIndex)
