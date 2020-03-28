@@ -227,7 +227,6 @@ const App = () => {
             team.won = false;
             match.topTeam = team;
           }
-          console.log('next round Match: ', match, ', matchINdex: ', matchIndex)
           setRounds(newRounds);
       }
     }, 3000)

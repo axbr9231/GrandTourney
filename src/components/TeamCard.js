@@ -1,16 +1,32 @@
 import React from 'react';
 import { Card, CardContent } from '@material-ui/core';
+import styled from 'styled-components';
+import { useSpring, animated } from 'react-spring';
+
+const CardContainer = styled(animated(Card))`
+  margin: 5px;
+`;
+
+const ContentContainer = animated(CardContent);
 
 const TeamCard = ({ team }) => {
 
+  const props = useSpring({
+    backgroundColor: team.lost ? 'lightGray' : 'white'
+  })
 
+  const props2 = useSpring({
+    textDecoration: team.lost ? 'line-through red' : 'none'
+  })
+
+  console.log('team: ', team);
 
   return (
-    <Card className="teamCard" style={team.lost ? {backgroundColor: 'lightGray'} : null}>
-      <CardContent style={team.lost ? {'textDecoration': 'line-through', 'textDecorationColor': 'red'} : null}>
+    <CardContainer style={props}>
+      <ContentContainer style={props2}>
         {team.name}
-      </CardContent>
-    </Card>
+      </ContentContainer>
+    </CardContainer>
   )
 }
 
