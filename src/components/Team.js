@@ -18,19 +18,17 @@ const Container = styled(animated.div)`
     justify-content: center;
 `;
 
-const Team = ({ team, openModal }) => {
+const Team = ({ team, matchHeight, openModal }) => {
 
 
     const props = useSpring({
         config: {tension: 40}, 
         right: team.active ? '-25px' : '175px',
-        top: team.isTop ? team.won ? '75px' : '-25px' : '',
-        bottom: !team.isTop ? team.won ? '75px' : '-25px' : '',
+        top: team.isTop ? team.won ? `${matchHeight / 2 - 25}px` : '-25px' : '',
+        bottom: !team.isTop ? team.won ? `${matchHeight / 2 - 25}px` : '-25px' : '',
         onRest: () => {
             if (team.active && !team.won && !team.lost) {
                 openModal();
-            // } else if (team.active && team.won) {
-            //     team = undefined;
             }
         }
     });

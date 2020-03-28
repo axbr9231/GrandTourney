@@ -36,6 +36,7 @@ class Match {
     this.round = round;
     this.topTeam = teams && teams[0] ? new Team(teams[0], true) : undefined;
     this.bottomTeam = teams && teams[1] ? new Team(teams[1], false) : undefined;
+    this.height = (Math.pow(2, round) * 100) - (Math.floor(Math.pow(2, round - 2)) * 100);
     this.isActive = false;
     this.isVisible = true;
   }

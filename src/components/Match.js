@@ -60,11 +60,13 @@ const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
                 setWinner={setWinner}
                 openModal={openModal}
                 team={match.topTeam}
+                matchHeight={match.height}
                 /> : null}
             {match.bottomTeam ? <Team 
                 setWinner={setWinner}
                 openModal={openModal}
                 team={match.bottomTeam}
+                matchHeight={match.height}
                 /> : null}
             <MatchModal 
             isOpen={modalOpen} 
