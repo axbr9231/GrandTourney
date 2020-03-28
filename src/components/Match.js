@@ -20,6 +20,12 @@ const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
         }
     }, [currentMatch, match])
 
+    const openModal = () => {
+        if (match.isActive && match === currentMatch) {
+            setModalOpen(true);
+        }
+    }
+ 
     const closeModal = (e) =>{
         setModalOpen(false);
         activateWinner(winningTeam);
@@ -37,24 +43,27 @@ const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
             match.setWinner(match.topTeam, match.bottomTeam)
             updateNextRound(parseInt(round), parseInt(index), match.topTeam);
         }
-        setTimeout(() => {
-            if (team === match.topTeam) {
-                match.topTeam = undefined;
-            } else {
-                match.bottomTeam = undefined;
-            }
-        }, 2500);
+        // setTimeout(() => {
+        //     if (team === match.topTeam) {
+        //         match.topTeam = undefined;
+        //     } else {
+        //         match.bottomTeam = undefined;
+        //     }
+        // }, 2500);
         match.isActive = false;
     }
 
+    console.log('match: ', match);
     return (
         <div className={`round${round} match`} style={!match.isVisible ? {'visibility': 'hidden'} : null} >
             {match.topTeam ? <Team 
                 setWinner={setWinner}
+                openModal={openModal}
                 team={match.topTeam}
                 /> : null}
             {match.bottomTeam ? <Team 
                 setWinner={setWinner}
+                openModal={openModal}
                 team={match.bottomTeam}
                 /> : null}
             <MatchModal 

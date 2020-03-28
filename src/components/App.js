@@ -10,21 +10,23 @@ class Team {
     this.name = name;
     this.isTop = isTop;
     this.className = isTop ? 'top-team' : 'bottom-team';
+    this.won = false;
     this.lost = false;
     this.active = false;
   }
 
   activateTeam() {
-    this.className = this.isTop ? 'top-team-end' : 'bottom-team-end';
+    // this.className = this.isTop ? 'top-team-end' : 'bottom-team-end';
     this.active = true;
   }
 
   setWinner() {
-    this.className = this.isTop ? `winning-team-top` : `winning-team-bottom`;
+    // this.className = this.isTop ? `winning-team-top` : `winning-team-bottom`;
+    this.won = true;
   }
 
   setLoser() {
-    this.className += ' losing-team';
+    // this.className += ' losing-team';
     this.lost = true;
   }
 }
@@ -137,7 +139,6 @@ const initializeRounds = (inputArray, mutatedArray) => {
         match.isVisible = false;
       }
     }
-    console.log('mutatedArray: ', mutatedArray);
     return rounds;
 }
 
@@ -161,25 +162,22 @@ const App = () => {
     if (rounds[roundId]) {
       if (rounds[roundId][matchIndex]) {
         if (!rounds[roundId][matchIndex].topTeam) {
-        setMatchIndex(matchIndex + 1);
+          setMatchIndex(matchIndex + 1);
         }
       } else {
         setRoundId(roundId + 1);
         setMatchIndex(0);
       }
     }
-  }, [rounds, roundId, matchIndex]);
+  }, [rounds, matchIndex]);
 
   useEffect(() => {
     if (rounds[roundId]) {
-      console.log('Match index before change: ', matchIndex)
       if (rounds[roundId][matchIndex + 1]) {
-          console.log('match index after increment (should exist): ', matchIndex + 1);
           setMatchIndex(matchIndex + 1);
         } else {
           setMatchIndex(0);
           setRoundId(roundId + 1);
-          console.log('Match index after restting: ', 0)
         }
     }
   }, [currentMatch]);
@@ -210,15 +208,22 @@ const App = () => {
           const newRounds = Object.assign({}, rounds);
           // newRounds[roundId + 1][Math.floor(matchIndex / 2)][matchIndex % 2 ? 1 : 0] = teamName;
           const match = newRounds[roundId + 1][Math.floor(matchIndex / 2)];
+          if (team.isTop) {
+            rounds[roundId][matchIndex].topTeam = undefined;
+          } else {
+            rounds[roundId][matchIndex].bottomTeam = undefined;
+          }
           if (matchIndex % 2) {
             team.isTop = false;
             team.className = 'bottom-team';
             team.active = false;
+            team.won = false;
             match.bottomTeam = team;
           } else {
             team.isTop = true;
             team.className = 'top-team';
             team.active = false;
+            team.won = false;
             match.topTeam = team;
           }
           console.log('next round Match: ', match, ', matchINdex: ', matchIndex)
@@ -227,7 +232,6 @@ const App = () => {
     }, 3000)
   }
 
-console.log('Teamobjects array: ', teamObjectsArray)
   return (
     <Fragment>
       <TeamSetup 

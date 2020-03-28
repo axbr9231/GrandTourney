@@ -5,35 +5,41 @@ import { useSpring, animated } from 'react-spring';
 import TeamInfo from './TeamInfo';
 import '../App.css';
 
-const Team = ({ team }) => {
+const Container = styled(animated.div)`
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    position: absolute;
+    background-color: white;
+    z-index: 1;
+    margin-left: -25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
 
-    const Container = styled(animated.div)`
-        height: 50px;
-        width: 50px;
-        border-radius: 100%;
-        position: absolute;
-        background-color: white;
-        z-index: 1;
-        margin-left: -25px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        ${team.isTop ? 'top: ' : 'bottom: '}-25px;
-    `;
+const Team = ({ team, openModal }) => {
 
-    const props = useSpring({config: {tension: 40}, right: team.active ? '-25px' : '175px'});
+
+    const props = useSpring({
+        config: {tension: 40}, 
+        right: team.active ? '-25px' : '175px',
+        top: team.isTop ? team.won ? '75px' : '-25px' : '',
+        bottom: !team.isTop ? team.won ? '75px' : '-25px' : '',
+        onRest: () => {
+            if (team.active && !team.won && !team.lost) {
+                openModal();
+            // } else if (team.active && team.won) {
+            //     team = undefined;
+            }
+        }
+    });
+
 
     let initials;
     if (team.name) {
         initials = team.name.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('');
     };
-
-
-    // const setWinner = (e) => {
-    //             setTimeout(() => { 
-    //                 props.setWinner(props.teamId);
-    //             }, 2500);
-    // }
 
     return (
         <Tooltip title={<TeamInfo teamName={team.name} />} interactive leaveDelay={1000}>
