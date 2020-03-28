@@ -15,52 +15,50 @@
   margin: 5px;
 } */
 
-#leftPanelTopInfoDiv {
+/* #leftPanelTopInfoDiv {
   height: 8vh;
   width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
-#teamInfoDiv {
+/* #teamInfoDiv {
   height: 84vh;
   overflow-y: auto;
   width: 95%;
-  /* scroll-padding-left: 4px; */
-}
+} */
 
-#leftPanelBottomButtonDiv {
+/* #leftPanelBottomButtonDiv {
   height: 8vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
-h2 {
+/* h2 {
   margin: 0;
-}
+} */
 
 #root {
   display: flex;
 }
 
-#setupPage {
+/* #setupPage {
   display: flex;
   align-items: center;
   flex-flow: column;
   width: 20vw;
   background-color: rgb(85, 85, 85);
-}
+} */
 
-#bracket {
+/* #bracket {
   width: 80vw;
   min-height: 100vh;
   background-color: chartreuse;
-  /* z-index: -1; */
   padding-left: 25px;
   display: flex;
-}
+} */
 
 /* .top-team {
   top: -25px;
@@ -260,10 +258,10 @@ h2 {
   position: relative;
 } */
 
-.App {
+/* .App {
   height: 100%;
   width: 100%;
-}
+} */
 
 body {
   height: 100%;
