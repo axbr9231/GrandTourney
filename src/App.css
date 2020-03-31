@@ -1,4 +1,4 @@
-.team {
+/* .team {
   height: 50px;
   width: 50px;
   border-radius: 100%;
@@ -9,99 +9,97 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
-.teamCard {
+/* .teamCard {
   margin: 5px;
-}
+} */
 
-#leftPanelTopInfoDiv {
+/* #leftPanelTopInfoDiv {
   height: 8vh;
   width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
-#teamInfoDiv {
+/* #teamInfoDiv {
   height: 84vh;
   overflow-y: auto;
   width: 95%;
-  /* scroll-padding-left: 4px; */
-}
+} */
 
-#leftPanelBottomButtonDiv {
+/* #leftPanelBottomButtonDiv {
   height: 8vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
-h2 {
+/* h2 {
   margin: 0;
-}
+} */
 
 #root {
   display: flex;
 }
 
-#setupPage {
+/* #setupPage {
   display: flex;
   align-items: center;
   flex-flow: column;
   width: 20vw;
   background-color: rgb(85, 85, 85);
-}
+} */
 
-#bracket {
+/* #bracket {
   width: 80vw;
   min-height: 100vh;
   background-color: chartreuse;
-  /* z-index: -1; */
   padding-left: 25px;
   display: flex;
-}
+} */
 
-.top-team {
+/* .top-team {
   top: -25px;
-}
+} */
 
-.top-team-end {
+/* .top-team-end {
   top: -25px;
   animation-name: top-team-move;
   animation-duration: 3s;
   animation-fill-mode: forwards;
-}
-
+} */
+/* 
 .losing-team {
   background-color: rgba(255, 0, 0, 0.4);
-}
+} */
 
-.round1 .winning-team-top {
+/* .round1 .winning-team-top {
   animation-name: top-team-win-1;
   animation-duration: 3s;
   animation-fill-mode: forwards;
-}
+} */
 
-.round2 .winning-team-top {
+/* .round2 .winning-team-top {
   animation-name: top-team-win-2;
   animation-duration: 3s;
   animation-fill-mode: forwards;
-}
+} */
 
-.round3 .winning-team-top {
+/* .round3 .winning-team-top {
   animation-name: top-team-win-3;
   animation-duration: 3s;
   animation-fill-mode: forwards;
-}
+} */
 
-.round4 .winning-team-top {
+/* .round4 .winning-team-top {
   animation-name: top-team-win-4;
   animation-duration: 3s;
   animation-fill-mode: forwards;
-}
+} */
 
-@keyframes top-team-win-1 {
+/* @keyframes top-team-win-1 {
   from {
     right: -25px;
     top: -25px;
@@ -111,9 +109,9 @@ h2 {
     right: -25px;
     top: 75px;
   }
-}
+} */
 
-@keyframes top-team-win-2 {
+/* @keyframes top-team-win-2 {
   from {
     right: -25px;
     top: -25px;
@@ -123,9 +121,9 @@ h2 {
     right: -25px;
     top: 125px;
   }
-}
+} */
 
-@keyframes top-team-win-3 {
+/* @keyframes top-team-win-3 {
   from {
     right: -25px;
     top: -25px;
@@ -135,9 +133,9 @@ h2 {
     right: -25px;
     top: 275px;
   }
-}
+} */
 
-@keyframes top-team-win-4 {
+/* @keyframes top-team-win-4 {
   from {
     right: -25px;
     top: -25px;
@@ -147,9 +145,9 @@ h2 {
     right: -25px;
     top: 575px;
   }
-}
+} */
 
-@keyframes top-team-move {
+/* @keyframes top-team-move {
   from {
     right: 175px;
   }
@@ -157,44 +155,44 @@ h2 {
   to {
     right: -25px;
   }
-}
+} */
 
-.bottom-team {
+/* .bottom-team {
   bottom: -25px;
-}
+} */
 
-.bottom-team-end {
+/* .bottom-team-end {
   bottom: -25px;
   animation-name: bottom-team-move;
   animation-duration: 3s;
   animation-fill-mode: forwards;
-}
+} */
 
-.round1 .winning-team-bottom {
+/* .round1 .winning-team-bottom {
   animation-name: bottom-team-win-1;
   animation-duration: 3s;
   animation-fill-mode: forwards;
-}
+} */
 
-.round2 .winning-team-bottom {
+/* .round2 .winning-team-bottom {
   animation-name: bottom-team-win-2;
   animation-duration: 3s;
   animation-fill-mode: forwards;
-}
+} */
 
-.round3 .winning-team-bottom {
+/* .round3 .winning-team-bottom {
   animation-name: bottom-team-win-3;
   animation-duration: 3s;
   animation-fill-mode: forwards;
-}
+} */
 
-.round4 .winning-team-bottom {
+/* .round4 .winning-team-bottom {
   animation-name: bottom-team-win-4;
   animation-duration: 3s;
   animation-fill-mode: forwards;
-}
+} */
 
-@keyframes bottom-team-win-1 {
+/* @keyframes bottom-team-win-1 {
   from {
     right: -25px;
     bottom: -25px;
@@ -204,9 +202,9 @@ h2 {
     right: -25px;
     bottom: 75px;
   }
-}
+} */
 
-@keyframes bottom-team-win-2 {
+/* @keyframes bottom-team-win-2 {
   from {
     right: -25px;
     bottom: -25px;
@@ -216,9 +214,9 @@ h2 {
     right: -25px;
     bottom: 125px;
   }
-}
+} */
 
-@keyframes bottom-team-win-3 {
+/* @keyframes bottom-team-win-3 {
   from {
     right: -25px;
     bottom: -25px;
@@ -228,9 +226,9 @@ h2 {
     right: -25px;
     bottom: 275px;
   }
-}
+} */
 
-@keyframes bottom-team-win-4 {
+/* @keyframes bottom-team-win-4 {
   from {
     right: -25px;
     bottom: -25px;
@@ -240,9 +238,9 @@ h2 {
     right: -25px;
     bottom: 575px;
   }
-}
+} */
 
-@keyframes bottom-team-move {
+/* @keyframes bottom-team-move {
   from {
     right: 175px;
   }
@@ -250,49 +248,48 @@ h2 {
   to {
     right: -25px;
   }
-}
+} */
 
-.match {
+/* .match {
   width: 200px;
   border-top: 2px solid black;
   border-right: 2px solid black;
   border-bottom: 2px solid black;
   position: relative;
-  /* z-index: -1; */
-}
+} */
 
-.round1 {
-  height: 200px;
-  margin-top: 50px;
-  margin-bottom: 100px;
-}
-
-.App {
+/* .App {
   height: 100%;
   width: 100%;
-}
+} */
 
 body {
   height: 100%;
   width: 100%;
 }
 
-.round2 {
+/* .round1 {
+  height: 200px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+} */
+
+/* .round2 {
   height: 300px;
   margin-top: 150px;
   margin-bottom: 300px;
-}
+} */
 
-.round3 {
+/* .round3 {
   height: 600px;
   margin-top: 300px;
   margin-bottom: 600px;
-}
+} */
 
-.round4 {
+/* .round4 {
   height: 1200px;
   margin-top: 600px;
-}
+} */
 
 .team-label {
   margin-top: 40px;

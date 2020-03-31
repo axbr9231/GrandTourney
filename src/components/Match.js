@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import '../App.css';
 import Team from './Team.js'
 import MatchModal from './MatchModal';
 
-const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
+const Container = styled.div`
+    width: 200px;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    position: relative;
+`;
 
-    // let hideMatch = !match.topTeam && !match.bottomTeam && round === '1';
+const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
 
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -20,6 +27,12 @@ const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
         }
     }, [currentMatch, match])
 
+    const openModal = () => {
+        if (match.isActive && match === currentMatch) {
+            setModalOpen(true);
+        }
+    }
+ 
     const closeModal = (e) =>{
         setModalOpen(false);
         activateWinner(winningTeam);
@@ -37,25 +50,29 @@ const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
             match.setWinner(match.topTeam, match.bottomTeam)
             updateNextRound(parseInt(round), parseInt(index), match.topTeam);
         }
-        setTimeout(() => {
-            if (team === match.topTeam) {
-                match.topTeam = undefined;
-            } else {
-                match.bottomTeam = undefined;
-            }
-        }, 2500);
         match.isActive = false;
     }
 
+    const style = {
+        visibility: match.isVisible ? 'visible' : 'hidden',
+        height: `${match.height}px`,
+        marginTop: round === '1' ? '50px' : `${match.height / 2}px`,
+        marginBottom: round === '1' ? '100px' : `${match.height}px`
+    }
+
     return (
-        <div className={`round${round} match`} style={!match.isVisible ? {'visibility': 'hidden'} : null} >
+        <Container style={style} >
             {match.topTeam ? <Team 
                 setWinner={setWinner}
+                openModal={openModal}
                 team={match.topTeam}
+                matchHeight={match.height}
                 /> : null}
             {match.bottomTeam ? <Team 
                 setWinner={setWinner}
+                openModal={openModal}
                 team={match.bottomTeam}
+                matchHeight={match.height}
                 /> : null}
             <MatchModal 
             isOpen={modalOpen} 
@@ -64,7 +81,7 @@ const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
             closeModal={closeModal}
             setWinner={setWinner}
             />
-        </div>
+        </Container>
     )
 }
 
