@@ -53,7 +53,7 @@ const MatchModal = (props) => {
   const modalContent = () => {
       if (!showWinner) {
           return (
-            <div>
+            <div className="dialog-container">
             <div className="modal-content" style={{'width': '500px', 'height': '200px'}}>
                 <div className="modal-team1"></div>
                 <h2>{topTeamName} VS {bottomTeamName}</h2>
@@ -71,7 +71,7 @@ const MatchModal = (props) => {
           )
       } else if (showWinner) {
           return (
-              <div>
+              <div className="dialog-container">
                   <div className="modal-content" style={{'width': '300px', 'height': '450px'}}>
                     <div className="modal-winner"><h3 style={{'position': 'absolute'}}>{winnerInitials}</h3></div>
                         <div>

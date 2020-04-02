@@ -6,7 +6,6 @@ import Round from './Round.js';
 const Container = styled.div`
     width: 80vw;
     min-height: 100vh;
-    background-color: #202a3f;
     padding-left: 25px;
     display: flex;
 `;

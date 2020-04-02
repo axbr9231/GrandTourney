@@ -10,7 +10,7 @@ const Container = styled.div`
     border-right: 2px solid #0be9e9;
     border-bottom: 2px solid #0be9e9;
     position: relative;
-    box-shadow: 5px 2px 8px #0be9e9, -5px 2px 8px #0be9e9 inset;
+    box-shadow: 5px 0px 8px #0be9e9, -5px 0px 8px #0be9e9 inset;
 `;
 
 const Match = ({ round, match, index, currentMatch, updateNextRound }) => {

@@ -17,13 +17,16 @@ const theme = createMuiTheme({
     error: {
       main: '#dae90b'
     },
+    background: {
+      paper: '#202a3f',
+    },
     text: {
       primary: '#0be9e9',
       secondary: '#0be9e9'
     },
     action: {
       active: '#0be9e9'
-    }
+    },
   },
   overrides: {
     MuiInput: {
@@ -33,6 +36,11 @@ const theme = createMuiTheme({
         }
       }
     },
+    MuiCard: {
+      root: {
+        overflow: 'visible'
+      }
+    }
   }
 });
 
