@@ -10,7 +10,9 @@ const MainContainer = styled.div`
   align-items: center;
   flex-flow: column;
   width: 20vw;
-  background-color: rgb(85, 85, 85);
+  border-right: 2px solid #0be9e9;
+  box-shadow: 0px 0px 15px 5px #0be9e9;
+  margin-right: 20px;
 `;
 
 const TopInfoContainer = styled.div`
