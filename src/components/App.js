@@ -1,9 +1,40 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, Fragment, useEffect } from 'react';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import _ from 'lodash';
 import '../App.css';
 import TeamSetup from './TeamSetup';
 import Bracket from './Bracket';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#0be9e9'
+    },
+    secondary: {
+      main: '#0be9e9'
+    },
+    error: {
+      main: '#dae90b'
+    },
+    text: {
+      primary: '#0be9e9',
+      secondary: '#0be9e9'
+    },
+    action: {
+      active: '#0be9e9'
+    }
+  },
+  overrides: {
+    MuiInput: {
+      underline: {
+        '&:before': {
+          borderBottom: '1px solid #0be9e9'
+        }
+      }
+    },
+  }
+});
 
 class Team {
   constructor(name, isTop) {
@@ -233,7 +264,7 @@ const App = () => {
   }
 
   return (
-    <Fragment>
+    <ThemeProvider theme={theme}>
       <TeamSetup 
       startMatch={startMatch}
       numTeams={numTeams} 
@@ -246,7 +277,7 @@ const App = () => {
       teamArray={teamObjectsArray}
       />
       <Bracket rounds={rounds} updateNextRound={updateNextRound} currentMatch={currentMatch}/>
-    </Fragment>
+    </ThemeProvider>
   )
 }
 
