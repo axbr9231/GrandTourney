@@ -6,10 +6,11 @@ import MatchModal from './MatchModal';
 
 const Container = styled.div`
     width: 200px;
-    border-top: 2px solid black;
-    border-right: 2px solid black;
-    border-bottom: 2px solid black;
+    border-top: 2px solid #0be9e9;
+    border-right: 2px solid #0be9e9;
+    border-bottom: 2px solid #0be9e9;
     position: relative;
+    box-shadow: 5px 2px 8px #0be9e9, -5px 2px 8px #0be9e9 inset;
 `;
 
 const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
