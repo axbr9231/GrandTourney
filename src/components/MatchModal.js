@@ -25,7 +25,10 @@ const MatchModal = (props) => {
 
   const topTeamName = props.topTeam ? props.topTeam.name : null;
   const bottomTeamName = props.bottomTeam ? props.bottomTeam.name : null;
-    
+
+  const topInitials = topTeamName ? topTeamName.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('') : null;
+  console.log('initials', topInitials) 
+  const bottomInitials = bottomTeamName ? bottomTeamName.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('') : null;
   const handleSplitWinner = (string) => {
     string += ' Progresses!'
     let stringArr = string.split('');
@@ -55,9 +58,9 @@ const MatchModal = (props) => {
           return (
             <div className="dialog-container">
             <div className="modal-content" style={{'width': '500px', 'height': '200px'}}>
-                <div className="modal-team1"></div>
+            <div className="modal-team1">{topInitials}</div>
                 <h2>{topTeamName} VS {bottomTeamName}</h2>
-                <div className="modal-team2"></div>
+            <div className="modal-team2">{bottomInitials}</div>
             </div>
             <DialogActions style={{'display': 'flex', 'justifyContent': 'center'}}>
                 <Button onClick={handleShowWinnerTop} color="primary" className="topTeam-wins">
@@ -73,7 +76,7 @@ const MatchModal = (props) => {
           return (
               <div className="dialog-container">
                   <div className="modal-content" style={{'width': '300px', 'height': '450px'}}>
-                    <div className="modal-winner"><h3 style={{'position': 'absolute'}}>{winnerInitials}</h3></div>
+                    <div className="modal-winner"><h2 style={{'position': 'absolute'}}>{winnerInitials}</h2></div>
                         <div>
                         <DroppingLetter letters={splitWinner} showWinner={showWinner} index={index} />
                         </div>                 

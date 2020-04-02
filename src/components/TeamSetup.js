@@ -64,7 +64,7 @@ const TeamSetup = ({ numTeams, setNumTeams, handleTeamNameChange, createBracket,
   return (
     <MainContainer>
       <TopInfoContainer>
-        {setupComplete ? <h3>Round {round} / {totalRounds}</h3> : <NumTeams setNumTeams={setNumTeams} />}
+        {setupComplete ? <h3 style={{color: 'aqua'}}>Round {round} / {totalRounds}</h3> : <NumTeams setNumTeams={setNumTeams} />}
       </TopInfoContainer>
       <TeamInfoContainer>
         {setupComplete ? teamCards : teamSetupForms}
