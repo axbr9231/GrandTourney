@@ -6,10 +6,11 @@ import TeamSetupForm from './TeamSetupForm';
 import TeamCard from './TeamCard';
 
 const MainContainer = styled.div`
+  float: left;
   display: flex;
   align-items: center;
   flex-flow: column;
-  width: 20vw;
+  width: 30vw;
   border-right: 2px solid #0be9e9;
   box-shadow: 0px 0px 15px 5px #0be9e9;
   margin-right: 20px;

@@ -284,7 +284,9 @@ const App = () => {
       setupComplete={teamSetupComplete}
       teamArray={teamObjectsArray}
       />
-      <Bracket rounds={rounds} updateNextRound={updateNextRound} currentMatch={currentMatch}/>
+      <div id='bracket' style={{width: '70vw', overflow: 'auto', scrollBehavior: 'smooth'}}>
+        <Bracket rounds={rounds} updateNextRound={updateNextRound} currentMatch={currentMatch}/>
+      </div>
     </ThemeProvider>
   )
 }

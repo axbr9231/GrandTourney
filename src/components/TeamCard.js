@@ -7,15 +7,21 @@ const CardContainer = styled(Card)`
   margin: 15px 20px;
 `;
 
+const ContentContainer = animated(CardContent);
+
 const TeamCard = ({ team }) => {
 
-  console.log('team: ', team);
+  const props = useSpring({
+    config: { tension: 40 },
+    borderRadius: '8px',
+    boxShadow: team.lost ? '0px 0px 15px 8px red'  : '0px 0px 15px 8px #0be9e9'
+  })
 
   return (
     <CardContainer>
-      <CardContent style={{borderRadius: '8px',  boxShadow: team.lost ? '0px 0px 15px 8px red'  : '0px 0px 15px 8px #0be9e9', textDecoration: team.lost ? 'line-through red' : 'none'}}>
+      <ContentContainer style={props}>
         {team.name}
-      </CardContent>
+      </ContentContainer>
     </CardContainer>
   )
 }

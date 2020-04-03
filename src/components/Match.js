@@ -13,7 +13,16 @@ const Container = styled.div`
     box-shadow: 5px 0px 8px #0be9e9, -5px 0px 8px #0be9e9 inset;
 `;
 
-const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
+const Match = ({ round, match, index, currentMatch, updateNextRound, bracketRef }) => {
+    const ref = React.useRef();
+    console.log('ref: ', ref);
+    if (match.isActive) {
+        ref.current.scrollIntoView({
+            bahavior: 'smooth',
+            block: 'center',
+            inline: 'nearest'
+        });
+    }
 
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -62,7 +71,7 @@ const Match = ({ round, match, index, currentMatch, updateNextRound }) => {
     }
 
     return (
-        <Container style={style} >
+        <Container style={style} ref={ref}>
             {match.topTeam ? <Team 
                 setWinner={setWinner}
                 openModal={openModal}
