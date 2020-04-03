@@ -13,7 +13,7 @@ const TeamCard = ({ team }) => {
 
   return (
     <CardContainer>
-      <CardContent style={{borderRadius: '8px', boxShadow: '0px 0px 15px 8px #0be9e9', textDecoration: team.lost ? 'line-through red' : 'none'}}>
+      <CardContent style={{borderRadius: '8px',  boxShadow: team.lost ? '0px 0px 15px 8px red'  : '0px 0px 15px 8px #0be9e9', textDecoration: team.lost ? 'line-through red' : 'none'}}>
         {team.name}
       </CardContent>
     </CardContainer>

@@ -58,9 +58,9 @@ const MatchModal = (props) => {
           return (
             <div className="dialog-container">
             <div className="modal-content" style={{'width': '500px', 'height': '200px'}}>
-            <div className="modal-team1">{topInitials}</div>
+            <div className="modal-team1"><h2 style={{'top': '40px', 'left': '62px', 'position': 'absolute'}}>{topInitials}</h2></div>
                 <h2>{topTeamName} VS {bottomTeamName}</h2>
-            <div className="modal-team2">{bottomInitials}</div>
+            <div className="modal-team2"><h2 style={{'top': '40px', 'left': '62px', 'position': 'absolute'}}>{bottomInitials}</h2></div>
             </div>
             <DialogActions style={{'display': 'flex', 'justifyContent': 'center'}}>
                 <Button onClick={handleShowWinnerTop} color="primary" className="topTeam-wins">
