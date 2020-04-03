@@ -8,6 +8,7 @@ const Container = styled.div`
     min-height: 100vh;
     padding-left: 25px;
     display: flex;
+    overflow: auto;
 `;
 
 const Bracket = ({ rounds, updateNextRound, currentMatch }) => {    
