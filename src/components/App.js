@@ -57,33 +57,33 @@ const App = () => {
   
   useEffect(() => {
     
-    console.log('useEffect(rounds) Variables: ', 'rounds: ', rounds, 'roundId: ', roundId, 'matchIndex: ', matchIndex)
+    console.log('useEffect Variables: ', 'rounds: ', rounds, 'roundId: ', roundId, 'matchIndex: ', matchIndex)
     if (rounds[roundId]) {
-      if (rounds[roundId][matchIndex]) {
+      if (rounds[roundId][matchIndex + 1]) {
         if (!rounds[roundId][matchIndex].topTeam) {
           setMatchIndex(matchIndex + 1);
         }
-      } else {
+      } else if (rounds[roundId + 1]) {
         setRoundId(roundId + 1);
         setMatchIndex(0);
       }
     }
-  }, [rounds]);
+  }, [rounds, matchIndex]);
 
-    useEffect(() => {
+  //   useEffect(() => {
     
-    console.log('useEffect(matchIndex) Variables: ', 'rounds: ', rounds, 'roundId: ', roundId, 'matchIndex: ', matchIndex)
-    if (rounds[roundId]) {
-      if (rounds[roundId][matchIndex]) {
-        if (!rounds[roundId][matchIndex].topTeam) {
-          setMatchIndex(matchIndex + 1);
-        }
-      } else {
-        setRoundId(roundId + 1);
-        setMatchIndex(0);
-      }
-    }
-  }, [matchIndex]);
+  //   console.log('useEffect(matchIndex) Variables: ', 'rounds: ', rounds, 'roundId: ', roundId, 'matchIndex: ', matchIndex)
+  //   if (rounds[roundId]) {
+  //     if (rounds[roundId][matchIndex + 1]) {
+  //       if (!rounds[roundId][matchIndex].topTeam) {
+  //         setMatchIndex(matchIndex + 1);
+  //       }
+  //     } else if (rounds[roundId + 1]) {
+  //       setRoundId(roundId + 1);
+  //       setMatchIndex(0);
+  //     }
+  //   }
+  // }, [matchIndex]);
 
   useEffect(() => {
     if (rounds[roundId]) {
