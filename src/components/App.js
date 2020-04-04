@@ -56,36 +56,22 @@ const App = () => {
   const [teamSetupComplete, setTeamSetupComplete] = useState(false);
   
   useEffect(() => {
-    
-    console.log('useEffect Variables: ', 'rounds: ', rounds, 'roundId: ', roundId, 'matchIndex: ', matchIndex)
+    // console.log('useEffect ROUNDS/ MATCH INDEX')
+    console.log('useEffect ROUNDS/ MATCH INDEX: ', 'rounds: ', rounds, 'roundId: ', roundId, 'matchIndex: ', matchIndex)
     if (rounds[roundId]) {
-      if (rounds[roundId][matchIndex + 1]) {
-        if (!rounds[roundId][matchIndex].topTeam) {
-          setMatchIndex(matchIndex + 1);
+      if (!rounds[roundId][matchIndex].isVisible) {
+        if (rounds[roundId][matchIndex + 1]) {
+            setMatchIndex(matchIndex + 1);
+        } else if (rounds[roundId + 1]) {
+          setRoundId(roundId + 1);
+          setMatchIndex(0);
         }
-      } else if (rounds[roundId + 1]) {
-        setRoundId(roundId + 1);
-        setMatchIndex(0);
       }
     }
   }, [rounds, matchIndex]);
 
-  //   useEffect(() => {
-    
-  //   console.log('useEffect(matchIndex) Variables: ', 'rounds: ', rounds, 'roundId: ', roundId, 'matchIndex: ', matchIndex)
-  //   if (rounds[roundId]) {
-  //     if (rounds[roundId][matchIndex + 1]) {
-  //       if (!rounds[roundId][matchIndex].topTeam) {
-  //         setMatchIndex(matchIndex + 1);
-  //       }
-  //     } else if (rounds[roundId + 1]) {
-  //       setRoundId(roundId + 1);
-  //       setMatchIndex(0);
-  //     }
-  //   }
-  // }, [matchIndex]);
-
   useEffect(() => {
+    console.log('useEffect CURRENT MATCH')
     if (rounds[roundId]) {
       if (rounds[roundId][matchIndex + 1]) {
           setMatchIndex(matchIndex + 1);
@@ -97,6 +83,7 @@ const App = () => {
   }, [currentMatch]);
 
   const startMatch = () => {
+    console.log('startMatch')
     rounds[roundId][matchIndex].activateMatch();
     setCurrentMatch(rounds[roundId][matchIndex]);
   }
@@ -112,37 +99,36 @@ const App = () => {
   }
 
   const createBracket = () => {
+    console.log('createBracket');
     setRounds(initializeRounds(teamArray, teamObjectsArray));
     setTeamSetupComplete(true);
   }
 
   const updateNextRound = (roundId, matchIndex, team) => {
-    setTimeout(() => {
-      if (rounds[roundId + 1]) {
-          const newRounds = Object.assign({}, rounds);
-          // newRounds[roundId + 1][Math.floor(matchIndex / 2)][matchIndex % 2 ? 1 : 0] = teamName;
-          const match = newRounds[roundId + 1][Math.floor(matchIndex / 2)];
-          if (team.isTop) {
-            rounds[roundId][matchIndex].topTeam = undefined;
-          } else {
-            rounds[roundId][matchIndex].bottomTeam = undefined;
-          }
-          if (matchIndex % 2) {
-            team.isTop = false;
-            team.className = 'bottom-team';
-            team.active = false;
-            team.won = false;
-            match.bottomTeam = team;
-          } else {
-            team.isTop = true;
-            team.className = 'top-team';
-            team.active = false;
-            team.won = false;
-            match.topTeam = team;
-          }
-          setRounds(newRounds);
-      }
-    }, 3000)
+    console.log('updateNextRound');
+    if (rounds[roundId + 1]) {
+        const newRounds = Object.assign({}, rounds);
+        const match = newRounds[roundId + 1][Math.floor(matchIndex / 2)];
+        if (team.isTop) {
+          rounds[roundId][matchIndex].topTeam = undefined;
+        } else {
+          rounds[roundId][matchIndex].bottomTeam = undefined;
+        }
+        if (matchIndex % 2) {
+          team.isTop = false;
+          team.className = 'bottom-team';
+          team.active = false;
+          team.won = false;
+          match.bottomTeam = team;
+        } else {
+          team.isTop = true;
+          team.className = 'top-team';
+          team.active = false;
+          team.won = false;
+          match.topTeam = team;
+        }
+        setRounds(newRounds);
+    }
   }
 
   return (

@@ -70,7 +70,6 @@ const MatchModal = (props) => {
   const bottomTeamName = props.bottomTeam ? props.bottomTeam.name : null;
 
   const topInitials = topTeamName ? topTeamName.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('') : null;
-  console.log('initials', topInitials) 
   const bottomInitials = bottomTeamName ? bottomTeamName.trim(' ').split(' ').map(word => word[0].toUpperCase()).join('') : null;
   const handleSplitWinner = (string) => {
     string += ' Progresses!'

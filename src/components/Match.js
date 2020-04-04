@@ -14,6 +14,7 @@ const Container = styled.div`
 `;
 
 const Match = ({ round, match, index, currentMatch, updateNextRound, bracketRef }) => {
+
     const ref = React.useRef();
     if (match.isActive) {
         ref.current.scrollIntoView({
@@ -38,11 +39,14 @@ const Match = ({ round, match, index, currentMatch, updateNextRound, bracketRef 
 
     const openModal = () => {
         if (match.isActive && match === currentMatch) {
+            console.log('open');
             setModalOpen(true);
         }
     }
  
     const closeModal = (e) =>{
+        console.log('close');
+        match.isActive = false;
         setModalOpen(false);
         activateWinner(winningTeam);
     }
@@ -59,7 +63,7 @@ const Match = ({ round, match, index, currentMatch, updateNextRound, bracketRef 
             match.setWinner(match.topTeam, match.bottomTeam)
             updateNextRound(parseInt(round), parseInt(index), match.topTeam);
         }
-        match.isActive = false;
+        // match.isActive = false;
     }
 
     const style = {
