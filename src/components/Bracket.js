@@ -4,7 +4,6 @@ import '../App.css';
 import Round from './Round.js';
 
 const Container = styled.div`
-    width: 170vw;
     min-height: 100vh;
     padding-left: 25px;
     display: flex;

@@ -15,7 +15,6 @@ const Container = styled.div`
 
 const Match = ({ round, match, index, currentMatch, updateNextRound, bracketRef }) => {
     const ref = React.useRef();
-    console.log('ref: ', ref);
     if (match.isActive) {
         ref.current.scrollIntoView({
             bahavior: 'smooth',

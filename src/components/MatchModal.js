@@ -2,8 +2,31 @@ import React from 'react';
 import { Dialog, Grow, Button, DialogActions }from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import DroppingLetter from './DroppingLetter';
+import { useSpring, animated } from 'react-spring';
+import styled from 'styled-components';
 
+const TopTeamContainer = styled.div`
+  border-radius: 100%;
+  background-color: #202a3f;
+  z-index: 1;
+  position: absolute;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
+const BottomTeamContainer = styled.div`
+  border-radius: 100%;
+  background-color: #202a3f;
+  z-index: 1;
+  position: absolute;
+  overflow: auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Grow direction="up" ref={ref} {...props} />;
   });
@@ -20,6 +43,26 @@ const MatchModal = (props) => {
   const [showWinner, setShowWinner] = React.useState(false)
   const [splitWinner, setSplitWinner] = React.useState([])
   const [winnerInitials, setWinnerInitials] = React.useState('');
+  const [hoverTop, setHoverTop] = React.useState(false);
+  const [hoverBottom, setHoverBottom] = React.useState(false);
+
+  const AnimatedTopTeam = animated(TopTeamContainer);
+  const AnimatedBottomTeam = animated(BottomTeamContainer);
+  
+  const propsTop = useSpring({
+    height: hoverTop ? '180px' : '150px',
+    width: hoverTop ? '180px' : '150px',
+    left : hoverTop ? '-60px' : '-40px',
+    top: hoverTop ? '-60px' : '-40px',
+    boxShadow: hoverTop ? '0px 0px 15px 20px #0be9e9' : '0px 0px 15px 5px #0be9e9'
+  })
+  const propsBottom = useSpring({
+    height: hoverBottom ? '180px' : '150px',
+    width: hoverBottom ? '180px' : '150px',
+    right : hoverBottom ? '-60px' : '-40px',
+    bottom: hoverBottom ? '-60px' : '-40px',
+    boxShadow: hoverBottom ? '0px 0px 15px 20px #0be9e9' : '0px 0px 15px 5px #0be9e9'
+  })
 
   let index = 1;
 
@@ -58,17 +101,25 @@ const MatchModal = (props) => {
           return (
             <div className="dialog-container">
             <div className="modal-content" style={{'width': '500px', 'height': '200px'}}>
-            <div className="modal-team1"><h2 style={{'top': '40px', 'left': '62px', 'position': 'absolute'}}>{topInitials}</h2></div>
+            <AnimatedTopTeam  style={propsTop}
+            onClick={handleShowWinnerTop}
+            onMouseOver={() => {setHoverTop(true)}}
+            onMouseOut={() => {setHoverTop(false)}}
+            ><h2>{topInitials}</h2></AnimatedTopTeam>
                 <h2>{topTeamName} VS {bottomTeamName}</h2>
-            <div className="modal-team2"><h2 style={{'top': '40px', 'left': '62px', 'position': 'absolute'}}>{bottomInitials}</h2></div>
+            <AnimatedBottomTeam  style={propsBottom}
+            onClick={handleShowWinnerBottom}
+            onMouseOver={() => {setHoverBottom(true)}}
+            onMouseOut={() => {setHoverBottom(false)}}
+            ><h2>{bottomInitials}</h2></AnimatedBottomTeam>
             </div>
             <DialogActions style={{'display': 'flex', 'justifyContent': 'center'}}>
-                <Button onClick={handleShowWinnerTop} color="primary" className="topTeam-wins">
+                {/* <Button onClick={handleShowWinnerTop} color="primary" className="topTeam-wins">
                 {topTeamName}
-                </Button>
-                <Button onClick={handleShowWinnerBottom} color="primary" className="bottomTeam-wins">
+                </Button> */}
+                {/* <Button onClick={handleShowWinnerBottom} color="primary" className="bottomTeam-wins">
                 {bottomTeamName}
-                </Button>
+                </Button> */}
             </DialogActions>
             </div>
           )
