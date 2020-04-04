@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import _ from 'lodash';
-import '../App.css';
+import initializeRounds from '../helpers';
 import TeamSetup from './TeamSetup';
 import Bracket from './Bracket';
 
@@ -44,144 +43,6 @@ const theme = createMuiTheme({
   }
 });
 
-class Team {
-  constructor(name, isTop) {
-    this.name = name;
-    this.isTop = isTop;
-    this.className = isTop ? 'top-team' : 'bottom-team';
-    this.won = false;
-    this.lost = false;
-    this.active = false;
-  }
-
-  activateTeam() {
-    // this.className = this.isTop ? 'top-team-end' : 'bottom-team-end';
-    this.active = true;
-  }
-
-  setWinner() {
-    // this.className = this.isTop ? `winning-team-top` : `winning-team-bottom`;
-    this.won = true;
-  }
-
-  setLoser() {
-    // this.className += ' losing-team';
-    this.lost = true;
-  }
-}
-
-class Match {
-  constructor(round, teams) {
-    this.round = round;
-    this.topTeam = teams && teams[0] ? new Team(teams[0], true) : undefined;
-    this.bottomTeam = teams && teams[1] ? new Team(teams[1], false) : undefined;
-    this.height = (Math.pow(2, round) * 100) - (Math.floor(Math.pow(2, round - 2)) * 100);
-    this.isActive = false;
-    this.isVisible = true;
-  }
-
-  activateMatch() {
-    this.topTeam.activateTeam()
-    this.bottomTeam.activateTeam();
-    this.isActive = true;
-  }
-
-  setWinner(winningTeam, losingTeam) {
-    winningTeam.setWinner();
-    losingTeam.setLoser();
-  }
-
-
-}
-
-const getRound2MatchCount = (length) => {
-    let lastPowerOfTwo = length - 1;
-    while ((Math.log2(lastPowerOfTwo) % 1)) {
-        lastPowerOfTwo--;
-    }
-    return Math.floor(lastPowerOfTwo / 2);
-}
-
-const getRound2TeamCount = (length) => {
-    let nextPowerOfTwo = length;
-    while ((Math.log2(nextPowerOfTwo) % 1)) { 
-        nextPowerOfTwo++;
-    }
-    return nextPowerOfTwo - length;
-}
-
-const initializeRounds = (inputArray, mutatedArray) => {
-    const rounds = {};
-    if (!inputArray.length) {
-      return rounds;
-    }
-    const teams = _.shuffle(inputArray);
-    const numRounds = Math.ceil(Math.log2(teams.length));
-    rounds[2] = new Array(getRound2MatchCount(teams.length));
-    for (let i = 0; i < rounds[2].length; i++) {
-      rounds[2][i] = new Match(2);
-    }
-    rounds[1] = Array(rounds[2].length * 2);
-    for (let i = 0; i < rounds[1].length; i++) {
-      rounds[1][i] = new Match(1);
-    }
-    for (let i = 3; i <= numRounds; i++) {
-      rounds[i] = Array(rounds[i - 1].length / 2);
-      for (let j = 0; j < rounds[i].length; j++) {
-        rounds[i][j] = new Match(i);
-      }
-    }
-    const round2TeamCount = getRound2TeamCount(teams.length);
-    const round2Teams = teams.splice(0, round2TeamCount);
-    const round1Teams = teams;
-    const round2Matches = rounds[2].slice();
-    let singleTeamByeCount = rounds[1].length - round2TeamCount;
-    while (round2Teams.length) {
-        const randomMatchIndex = Math.floor(Math.random() * round2Matches.length);
-        const match = round2Matches[randomMatchIndex];
-        if (singleTeamByeCount) {
-            const isTop = Math.floor(Math.random() * 2) ? false : true;
-            if (isTop) {
-              match.topTeam = new Team(round2Teams.pop(), true);
-              mutatedArray.push(match.topTeam);
-            } else {
-              match.bottomTeam = new Team(round2Teams.pop(), false);
-              mutatedArray.push(match.bottomTeam);
-            }
-            singleTeamByeCount--;
-        } else {
-          match.topTeam = new Team(round2Teams.pop(), true);
-          match.bottomTeam = new Team(round2Teams.pop(), false);
-          mutatedArray.push(match.topTeam);
-          mutatedArray.push(match.bottomTeam);
-        }
-        round2Matches.splice(randomMatchIndex, 1);
-    }
-    for (let i = 0; i < rounds[2].length; i++) {
-      const round2Match = rounds[2][i];
-      if (!round2Match.topTeam) {
-        const round1Match = rounds[1][i * 2];
-        round1Match.topTeam = new Team(round1Teams.pop(), true);
-        round1Match.bottomTeam = new Team(round1Teams.pop(), false);
-        mutatedArray.push(round1Match.topTeam);
-        mutatedArray.push(round1Match.bottomTeam);
-      } 
-      if (!round2Match.bottomTeam) {
-        const round1Match = rounds[1][(i * 2) + 1];
-        round1Match.topTeam = new Team(round1Teams.pop(), true);
-        round1Match.bottomTeam = new Team(round1Teams.pop(), false);
-        mutatedArray.push(round1Match.topTeam);
-        mutatedArray.push(round1Match.bottomTeam);
-      }
-    }
-    for (const match of rounds[1]) {
-      if (!match.topTeam) {
-        match.isVisible = false;
-      }
-    }
-    return rounds;
-}
-
 const teamObjectsArray = [];
 
 const App = () => {
@@ -193,12 +54,10 @@ const App = () => {
   const [roundId, setRoundId] = useState(1)
   const [currentMatch, setCurrentMatch] = useState({});
   const [teamSetupComplete, setTeamSetupComplete] = useState(false);
- 
-
   
   useEffect(() => {
     
-    console.log('useEffect Variables: ', 'rounds: ', rounds, 'roundId: ', roundId, 'matchIndex: ', matchIndex)
+    console.log('useEffect(rounds) Variables: ', 'rounds: ', rounds, 'roundId: ', roundId, 'matchIndex: ', matchIndex)
     if (rounds[roundId]) {
       if (rounds[roundId][matchIndex]) {
         if (!rounds[roundId][matchIndex].topTeam) {
@@ -209,7 +68,22 @@ const App = () => {
         setMatchIndex(0);
       }
     }
-  }, [rounds, matchIndex]);
+  }, [rounds]);
+
+    useEffect(() => {
+    
+    console.log('useEffect(matchIndex) Variables: ', 'rounds: ', rounds, 'roundId: ', roundId, 'matchIndex: ', matchIndex)
+    if (rounds[roundId]) {
+      if (rounds[roundId][matchIndex]) {
+        if (!rounds[roundId][matchIndex].topTeam) {
+          setMatchIndex(matchIndex + 1);
+        }
+      } else {
+        setRoundId(roundId + 1);
+        setMatchIndex(0);
+      }
+    }
+  }, [matchIndex]);
 
   useEffect(() => {
     if (rounds[roundId]) {
